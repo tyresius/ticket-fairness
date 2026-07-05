@@ -1,0 +1,211 @@
+enforcement,series,demand,dark_sold,dark_unmatched,dark_total,attend,wasted
+Full Enforcement,Status Quo,1,0,0,0,413,46
+Full Enforcement,Status Quo,1.5,0,0,0,417,2
+Full Enforcement,Status Quo,2,0,0,0,369,0
+Full Enforcement,Status Quo,3,0,0,0,434,0
+Full Enforcement,Status Quo,4,0,0,0,438,0
+Full Enforcement,Status Quo,5,0,0,0,476,0
+Full Enforcement,Status Quo,6,0,0,0,477,0
+Full Enforcement,Status Quo,7,0,0,0,476,0
+Full Enforcement,Status Quo,8,0,0,0,477,0
+Full Enforcement,Status Quo,10,0,0,0,477,0
+Full Enforcement,Dynamic Pricing,1,0,0,0,152,0
+Full Enforcement,Dynamic Pricing,1.5,0,0,0,227,0
+Full Enforcement,Dynamic Pricing,2,0,0,0,294,0
+Full Enforcement,Dynamic Pricing,3,0,0,0,363,0
+Full Enforcement,Dynamic Pricing,4,0,0,0,444,0
+Full Enforcement,Dynamic Pricing,5,0,0,0,476,0
+Full Enforcement,Dynamic Pricing,6,0,0,0,476,0
+Full Enforcement,Dynamic Pricing,7,0,0,0,476,0
+Full Enforcement,Dynamic Pricing,8,0,0,0,477,0
+Full Enforcement,Dynamic Pricing,10,0,0,0,476,0
+Full Enforcement,UK Face Value,1,0,0,0,401,86
+Full Enforcement,UK Face Value,1.5,0,0,0,413,71
+Full Enforcement,UK Face Value,2,0,0,0,426,55
+Full Enforcement,UK Face Value,3,0,1,1,455,22
+Full Enforcement,UK Face Value,4,2,0,3,457,19
+Full Enforcement,UK Face Value,5,2,3,5,453,22
+Full Enforcement,UK Face Value,6,0,8,8,446,26
+Full Enforcement,UK Face Value,7,0,11,11,441,29
+Full Enforcement,UK Face Value,8,0,14,14,437,32
+Full Enforcement,UK Face Value,10,0,16,16,436,34
+Full Enforcement,Bounded 10%,1,0,0,0,396,84
+Full Enforcement,Bounded 10%,1.5,0,0,0,415,61
+Full Enforcement,Bounded 10%,2,0,0,0,432,39
+Full Enforcement,Bounded 10%,3,2,0,2,463,0
+Full Enforcement,Bounded 10%,4,5,1,5,461,1
+Full Enforcement,Bounded 10%,5,3,7,10,451,7
+Full Enforcement,Bounded 10%,6,0,16,16,441,16
+Full Enforcement,Bounded 10%,7,0,21,21,432,21
+Full Enforcement,Bounded 10%,8,0,23,23,428,23
+Full Enforcement,Bounded 10%,10,0,28,28,424,28
+Full Enforcement,Bounded 20%,1,0,0,0,394,84
+Full Enforcement,Bounded 20%,1.5,0,0,0,413,59
+Full Enforcement,Bounded 20%,2,0,0,0,431,38
+Full Enforcement,Bounded 20%,3,2,0,2,460,0
+Full Enforcement,Bounded 20%,4,5,1,6,458,1
+Full Enforcement,Bounded 20%,5,4,7,11,448,7
+Full Enforcement,Bounded 20%,6,0,15,15,435,15
+Full Enforcement,Bounded 20%,7,0,20,20,430,20
+Full Enforcement,Bounded 20%,8,0,23,23,427,23
+Full Enforcement,Bounded 20%,10,0,27,27,424,27
+Full Enforcement,Bounded 25%,1,0,0,0,405,66
+Full Enforcement,Bounded 25%,1.5,0,0,0,419,49
+Full Enforcement,Bounded 25%,2,0,0,0,438,28
+Full Enforcement,Bounded 25%,3,2,0,2,459,0
+Full Enforcement,Bounded 25%,4,5,1,6,454,1
+Full Enforcement,Bounded 25%,5,4,7,11,445,7
+Full Enforcement,Bounded 25%,6,0,15,15,436,15
+Full Enforcement,Bounded 25%,7,0,20,20,431,20
+Full Enforcement,Bounded 25%,8,0,23,23,429,23
+Full Enforcement,Bounded 25%,10,0,27,27,425,27
+Full Enforcement,Bounded 30%,1,0,0,0,412,54
+Full Enforcement,Bounded 30%,1.5,0,0,0,424,37
+Full Enforcement,Bounded 30%,2,0,0,0,459,0
+Full Enforcement,Bounded 30%,3,2,0,2,454,0
+Full Enforcement,Bounded 30%,4,5,1,6,451,1
+Full Enforcement,Bounded 30%,5,4,7,11,443,7
+Full Enforcement,Bounded 30%,6,0,15,15,435,15
+Full Enforcement,Bounded 30%,7,0,19,19,430,19
+Full Enforcement,Bounded 30%,8,0,22,22,428,22
+Full Enforcement,Bounded 30%,10,0,26,26,425,26
+Partial Enforcement,Status Quo,1,0,0,0,412,45
+Partial Enforcement,Status Quo,1.5,0,0,0,416,2
+Partial Enforcement,Status Quo,2,0,0,0,370,0
+Partial Enforcement,Status Quo,3,0,0,0,434,0
+Partial Enforcement,Status Quo,4,0,0,0,438,0
+Partial Enforcement,Status Quo,5,0,0,0,476,0
+Partial Enforcement,Status Quo,6,0,0,0,476,0
+Partial Enforcement,Status Quo,7,0,0,0,476,0
+Partial Enforcement,Status Quo,8,0,0,0,477,0
+Partial Enforcement,Status Quo,10,0,0,0,477,0
+Partial Enforcement,Dynamic Pricing,1,0,0,0,152,0
+Partial Enforcement,Dynamic Pricing,1.5,0,0,0,227,0
+Partial Enforcement,Dynamic Pricing,2,0,0,0,294,0
+Partial Enforcement,Dynamic Pricing,3,0,0,0,363,0
+Partial Enforcement,Dynamic Pricing,4,0,0,0,444,0
+Partial Enforcement,Dynamic Pricing,5,0,0,0,477,0
+Partial Enforcement,Dynamic Pricing,6,0,0,0,476,0
+Partial Enforcement,Dynamic Pricing,7,0,0,0,476,0
+Partial Enforcement,Dynamic Pricing,8,0,0,0,477,0
+Partial Enforcement,Dynamic Pricing,10,0,0,0,476,0
+Partial Enforcement,UK Face Value,1,1,0,1,400,87
+Partial Enforcement,UK Face Value,1.5,0,1,1,414,71
+Partial Enforcement,UK Face Value,2,0,2,2,425,56
+Partial Enforcement,UK Face Value,3,4,1,5,452,20
+Partial Enforcement,UK Face Value,4,9,2,11,448,20
+Partial Enforcement,UK Face Value,5,5,9,14,439,27
+Partial Enforcement,UK Face Value,6,0,16,16,435,32
+Partial Enforcement,UK Face Value,7,0,17,17,436,33
+Partial Enforcement,UK Face Value,8,0,17,17,435,34
+Partial Enforcement,UK Face Value,10,0,19,19,434,36
+Partial Enforcement,Bounded 10%,1,1,0,1,392,85
+Partial Enforcement,Bounded 10%,1.5,0,2,2,414,62
+Partial Enforcement,Bounded 10%,2,0,4,4,429,40
+Partial Enforcement,Bounded 10%,3,10,0,10,454,0
+Partial Enforcement,Bounded 10%,4,18,3,21,445,3
+Partial Enforcement,Bounded 10%,5,9,17,26,431,17
+Partial Enforcement,Bounded 10%,6,0,28,28,423,28
+Partial Enforcement,Bounded 10%,7,0,30,30,423,30
+Partial Enforcement,Bounded 10%,8,0,31,31,421,31
+Partial Enforcement,Bounded 10%,10,0,33,33,422,33
+Partial Enforcement,Bounded 20%,1,0,0,0,393,84
+Partial Enforcement,Bounded 20%,1.5,0,2,2,410,61
+Partial Enforcement,Bounded 20%,2,0,4,4,429,36
+Partial Enforcement,Bounded 20%,3,11,0,11,451,0
+Partial Enforcement,Bounded 20%,4,17,4,20,442,4
+Partial Enforcement,Bounded 20%,5,8,15,24,433,15
+Partial Enforcement,Bounded 20%,6,0,25,25,425,25
+Partial Enforcement,Bounded 20%,7,0,28,28,425,28
+Partial Enforcement,Bounded 20%,8,0,29,29,424,29
+Partial Enforcement,Bounded 20%,10,0,33,33,420,33
+Partial Enforcement,Bounded 25%,1,0,0,0,406,66
+Partial Enforcement,Bounded 25%,1.5,0,1,2,417,48
+Partial Enforcement,Bounded 25%,2,0,4,4,430,31
+Partial Enforcement,Bounded 25%,3,12,0,12,448,0
+Partial Enforcement,Bounded 25%,4,16,3,20,442,3
+Partial Enforcement,Bounded 25%,5,8,16,24,432,16
+Partial Enforcement,Bounded 25%,6,0,25,26,424,25
+Partial Enforcement,Bounded 25%,7,0,27,27,424,27
+Partial Enforcement,Bounded 25%,8,0,29,29,422,29
+Partial Enforcement,Bounded 25%,10,0,32,32,422,32
+Partial Enforcement,Bounded 30%,1,0,0,0,412,54
+Partial Enforcement,Bounded 30%,1.5,0,1,1,425,36
+Partial Enforcement,Bounded 30%,2,0,4,4,451,4
+Partial Enforcement,Bounded 30%,3,12,0,12,446,0
+Partial Enforcement,Bounded 30%,4,16,3,19,441,3
+Partial Enforcement,Bounded 30%,5,8,15,22,433,15
+Partial Enforcement,Bounded 30%,6,0,25,25,424,25
+Partial Enforcement,Bounded 30%,7,0,27,27,424,27
+Partial Enforcement,Bounded 30%,8,0,28,28,424,28
+Partial Enforcement,Bounded 30%,10,0,32,32,421,32
+No Enforcement,Status Quo,1,0,0,0,411,47
+No Enforcement,Status Quo,1.5,0,0,0,416,2
+No Enforcement,Status Quo,2,0,0,0,368,0
+No Enforcement,Status Quo,3,0,0,0,433,0
+No Enforcement,Status Quo,4,0,0,0,437,0
+No Enforcement,Status Quo,5,0,0,0,476,0
+No Enforcement,Status Quo,6,0,0,0,475,0
+No Enforcement,Status Quo,7,0,0,0,476,0
+No Enforcement,Status Quo,8,0,0,0,476,0
+No Enforcement,Status Quo,10,0,0,0,476,0
+No Enforcement,Dynamic Pricing,1,0,0,0,151,0
+No Enforcement,Dynamic Pricing,1.5,0,0,0,228,0
+No Enforcement,Dynamic Pricing,2,0,0,0,295,0
+No Enforcement,Dynamic Pricing,3,0,0,0,362,0
+No Enforcement,Dynamic Pricing,4,0,0,0,444,0
+No Enforcement,Dynamic Pricing,5,0,0,0,476,0
+No Enforcement,Dynamic Pricing,6,0,0,0,477,0
+No Enforcement,Dynamic Pricing,7,0,0,0,476,0
+No Enforcement,Dynamic Pricing,8,0,0,0,477,0
+No Enforcement,Dynamic Pricing,10,0,0,0,475,0
+No Enforcement,UK Face Value,1,1,0,1,399,87
+No Enforcement,UK Face Value,1.5,0,2,2,413,71
+No Enforcement,UK Face Value,2,0,3,3,424,55
+No Enforcement,UK Face Value,3,10,0,10,451,18
+No Enforcement,UK Face Value,4,13,2,15,445,19
+No Enforcement,UK Face Value,5,6,11,16,438,29
+No Enforcement,UK Face Value,6,0,17,17,434,35
+No Enforcement,UK Face Value,7,0,18,18,435,35
+No Enforcement,UK Face Value,8,0,18,18,434,34
+No Enforcement,UK Face Value,10,0,19,19,433,37
+No Enforcement,Bounded 10%,1,2,0,2,395,83
+No Enforcement,Bounded 10%,1.5,0,3,4,409,64
+No Enforcement,Bounded 10%,2,0,7,7,425,39
+No Enforcement,Bounded 10%,3,19,0,19,447,0
+No Enforcement,Bounded 10%,4,22,5,27,441,5
+No Enforcement,Bounded 10%,5,9,19,29,431,19
+No Enforcement,Bounded 10%,6,0,29,29,422,29
+No Enforcement,Bounded 10%,7,0,31,31,423,31
+No Enforcement,Bounded 10%,8,0,32,32,422,32
+No Enforcement,Bounded 10%,10,0,35,35,420,35
+No Enforcement,Bounded 20%,1,1,0,1,397,82
+No Enforcement,Bounded 20%,1.5,0,3,4,409,59
+No Enforcement,Bounded 20%,2,0,8,8,424,35
+No Enforcement,Bounded 20%,3,19,0,19,444,0
+No Enforcement,Bounded 20%,4,22,4,26,442,4
+No Enforcement,Bounded 20%,5,9,18,27,430,18
+No Enforcement,Bounded 20%,6,0,29,29,423,29
+No Enforcement,Bounded 20%,7,0,31,31,420,31
+No Enforcement,Bounded 20%,8,0,32,32,421,32
+No Enforcement,Bounded 20%,10,0,33,33,421,33
+No Enforcement,Bounded 25%,1,1,0,1,405,66
+No Enforcement,Bounded 25%,1.5,0,4,4,413,49
+No Enforcement,Bounded 25%,2,0,8,8,425,31
+No Enforcement,Bounded 25%,3,18,0,18,443,0
+No Enforcement,Bounded 25%,4,21,4,25,439,4
+No Enforcement,Bounded 25%,5,8,17,25,431,17
+No Enforcement,Bounded 25%,6,0,29,29,422,29
+No Enforcement,Bounded 25%,7,0,30,30,422,30
+No Enforcement,Bounded 25%,8,0,31,31,422,31
+No Enforcement,Bounded 25%,10,0,33,33,420,33
+No Enforcement,Bounded 30%,1,1,0,1,411,55
+No Enforcement,Bounded 30%,1.5,1,4,4,420,37
+No Enforcement,Bounded 30%,2,0,8,8,442,8
+No Enforcement,Bounded 30%,3,18,0,18,441,0
+No Enforcement,Bounded 30%,4,20,4,24,440,4
+No Enforcement,Bounded 30%,5,9,18,27,431,18
+No Enforcement,Bounded 30%,6,0,28,28,423,28
+No Enforcement,Bounded 30%,7,0,29,29,423,29
+No Enforcement,Bounded 30%,8,0,31,31,422,31
+No Enforcement,Bounded 30%,10,0,33,33,421,33

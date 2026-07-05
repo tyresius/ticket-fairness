@@ -1,0 +1,13 @@
+agent,parameter,hand_tuned,emerged,pct_change,direction,param_lo,param_hi,gr_fan_b20_d5_hand_tuned,gr_fan_b20_d5_emerged
+mega_fan,flip_chance,0.02,0.0284,42.0,↑ higher,0.001,0.5,0.4769,0.4737
+mega_fan,plan_change_rate,0.08,0.0346,-56.8,↓ lower,0.02,0.55,0.4769,0.4737
+mega_fan,resale_effort_threshold,0.0,0.0801,inf,↑ higher,0.0,0.3,0.4769,0.4737
+mega_fan,flip_margin_threshold,0.5,0.1408,-71.8,↓ lower,0.0,1.0,0.4769,0.4737
+committed_casual,flip_chance,0.08,0.1109,38.6,↑ higher,0.001,0.5,0.4769,0.4737
+committed_casual,plan_change_rate,0.2,0.4047,102.3,↑ higher,0.02,0.55,0.4769,0.4737
+committed_casual,resale_effort_threshold,0.05,0.2644,428.8,↑ higher,0.0,0.3,0.4769,0.4737
+committed_casual,flip_margin_threshold,0.25,0.3029,21.2,↑ higher,0.0,1.0,0.4769,0.4737
+average_buyer,flip_chance,0.2,0.3093,54.6,↑ higher,0.001,0.5,0.4769,0.4737
+average_buyer,plan_change_rate,0.25,0.0625,-75.0,↓ lower,0.02,0.55,0.4769,0.4737
+average_buyer,resale_effort_threshold,0.1,0.297,197.0,↑ higher,0.0,0.3,0.4769,0.4737
+average_buyer,flip_margin_threshold,0.1,0.0254,-74.6,↓ lower,0.0,1.0,0.4769,0.4737

@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+.DS_Store
+node_modules/
+
+# Session scratch and run logs (results of record are the CSVs/PNGs, which ARE committed)
+*.log
+_calib.out
+_view.txt
+
+# Slide-render intermediates
+slide-*.jpg
+slide_lim-*
+*.ppm
+
+# Personal Claude Code settings
+.claude/settings.local.json
