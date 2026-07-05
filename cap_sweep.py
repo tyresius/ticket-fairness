@@ -23,29 +23,14 @@ from gre_sim import simulate, Rule, DEFS
 random.seed(42)
 
 # ── Sweep configuration ───────────────────────────────────────────────────────
-DEMAND_LEVELS  = [1, 1.5, 2, 3, 4, 5, 6, 7, 8, 10]
-# Added 0.0 to the sweep (2026-04-21) so Bounded 0% appears in the continuum
-# alongside UK Face Value. UK Face Value (below) is a distinct real-world
-# comparator with a 2-ticket purchase limit.
-CAP_LEVELS     = [0.0, 0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.40, 0.50]
-RUNS_PER_POINT = 100  # C2 fix: increased from 30 → 100 for tighter MOE (~±0.010 vs ±0.018)
+# Extracted to sweep_config.py (2026-07-04) so rawls_analysis.py and
+# generate_charts.py can't silently desync from the grid actually swept.
+# Historical notes: Bounded 0% added 2026-04-21 alongside UK Face Value
+# (a distinct real-world comparator with a 2-ticket limit); RUNS_PER_POINT
+# raised 30 -> 100 by the C2 fix (MOE ~±0.010 vs ±0.018).
+from sweep_config import DEMAND_LEVELS, CAP_LEVELS, RUNS_PER_POINT, build_series
 
-SERIES = [
-    dict(id="status_quo", label="Status Quo",
-         rule=Rule("Status Quo",      cap=None, plimit=8, dyn_mul=None)),
-    dict(id="dynamic",    label="Dynamic Pricing",
-         rule=Rule("Dynamic Pricing", cap=None, plimit=6, dyn_mul=2.2)),
-    dict(id="uk_face",    label="UK Face Value",
-         rule=Rule("UK Face Value",   cap=0.0,  plimit=2, dyn_mul=None)),
-    *[
-        dict(
-            id    = f"bounded_{round(c*100)}",
-            label = f"Bounded {round(c*100)}%",
-            rule  = Rule(f"Bounded {round(c*100)}%", cap=c, plimit=4, dyn_mul=None),
-        )
-        for c in CAP_LEVELS
-    ],
-]
+SERIES = build_series()
 
 
 def avg_f(runs, fn):

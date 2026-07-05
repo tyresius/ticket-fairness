@@ -63,13 +63,11 @@ summary_rows = list(csv.DictReader(open("cap-sweep-summary.csv")))
 FAN_TYPES = ["mega_fan", "committed_casual", "average_buyer"]
 ALL_TYPES = ["mega_fan", "committed_casual", "average_buyer", "scalper"]
 
-SERIES_ORDER = [
-    "Status Quo", "Dynamic Pricing", "UK Face Value",
-    "Bounded 0%", "Bounded 5%", "Bounded 10%", "Bounded 15%",
-    "Bounded 20%", "Bounded 25%", "Bounded 30%", "Bounded 40%", "Bounded 50%",
-]
+# Grid imported from the shared config (2026-07-04) — previously duplicated
+# here, so a change to the swept caps silently desynced this analysis.
+from sweep_config import SERIES_ORDER, DEMAND_LEVELS
 
-DEMANDS = [1.0, 1.5, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 10.0]
+DEMANDS = [float(m) for m in DEMAND_LEVELS]
 
 # ── Index agent data: (series, demand, agent_type) → row ─────────────────────
 agent_idx = {}

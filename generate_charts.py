@@ -17,21 +17,13 @@ def get(series, demand, field):
         return None
     return float(matches[0][field])
 
-DEMANDS = [1.0, 1.5, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 10.0]
-BOUNDED = ["Bounded 0%", "Bounded 5%", "Bounded 10%", "Bounded 15%",
-           "Bounded 20%", "Bounded 25%", "Bounded 30%", "Bounded 40%", "Bounded 50%"]
-CAP_VALS = [0, 5, 10, 15, 20, 25, 30, 40, 50]
+# Grid + palette imported from the shared config (2026-07-04) — previously
+# duplicated here, so a change to the swept caps silently desynced the charts.
+from sweep_config import DEMAND_LEVELS, CAP_LEVELS, BOUNDED_LABELS, PALETTE
 
-PALETTE = {
-    "Status Quo":     "#E05C5C",
-    "Dynamic Pricing":"#E08B3A",
-    "UK Face Value":  "#9B59B6",
-    "Bounded 0%":     "#5BA4CF",
-    "Bounded 10%":    "#3D9B70",
-    "Bounded 20%":    "#2E7D52",
-    "Bounded 25%":    "#1A5C3A",
-    "highlight":      "#F4D03F",
-}
+DEMANDS  = [float(m) for m in DEMAND_LEVELS]
+BOUNDED  = BOUNDED_LABELS
+CAP_VALS = [round(c * 100) for c in CAP_LEVELS]
 
 STYLE = dict(figure_facecolor="#0F1923", axes_facecolor="#0F1923")
 plt.rcParams.update({
