@@ -693,6 +693,14 @@ def simulate(rule: Rule, mul: float,
             access_rate = len(got) / total
             if not got:
                 utility = 0.02
+                # E1 completion (2026-07-04): with zero access, the ex-ante
+                # expectation IS the missed-utility floor — hit_rate is 0, so
+                # ex_ante = 0*got_utility + 1*0.02. Previously the 0.0
+                # initializer leaked through because the E1 computation lives
+                # in the else-branch, understating rawls_ea_fan / ex_ante
+                # lenses at total-shutout corners (tight cap × extreme
+                # demand). Caught by test_invariants.py::ExAnteZeroAccessFloor.
+                ex_ante_utility = 0.02
             else:
                 price_ratio = (avg_paid - FACE) / FACE if avg_paid > 0 else 0
                 price_score = max(0.0, 1 - price_ratio) if avg_paid > 0 else 0.0

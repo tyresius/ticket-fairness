@@ -1,0 +1,11 @@
+# Interpreter of record: /usr/local/bin/python3 (Python 3.13 framework build).
+# NOTE: plain `python3` on this machine resolves to Homebrew Python, which
+# does NOT have these packages — always invoke /usr/local/bin/python3.
+# Core simulation (gre_sim.py, cap_sweep.py, sensitivity_sweep.py,
+# enforcement_sweep.py, weight_discovery.py, calibrate_*.py) is stdlib-only;
+# these packages are needed for charts, rawls_analysis, global_sensitivity,
+# and deck slide manipulation.
+numpy>=2.3
+matplotlib>=3.10
+python-pptx>=1.0
+lxml>=5.0
