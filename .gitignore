@@ -15,3 +15,5 @@ slide_lim-*
 
 # Personal Claude Code settings
 .claude/settings.local.json
+qa_*.jpg
+uk2026_sweep.log
