@@ -27,6 +27,17 @@ RULES = {
 }
 MULS = [1, 1.5, 3, 10]
 
+# Fee-capped regimes (UK 2026 modeling, added 2026-07-05): same invariants
+# must hold when platform fees are swept away from the 15% baseline.
+FEE_CAPPED_RULES = {
+    "uk2026": (Rule("UK 2026", cap=0.0, plimit=4, dyn_mul=None),
+               dict(secondary_fee_seller=0.05, secondary_fee_buyer=0.05)),
+    "uk2026_strict": (Rule("UK 2026 strict", cap=0.0, plimit=4, dyn_mul=None),
+                      dict(secondary_fee_seller=0.02, secondary_fee_buyer=0.02)),
+    "b20_feecap": (Rule("Bounded 20% + fee cap", cap=0.20, plimit=4, dyn_mul=None),
+                   dict(secondary_fee_seller=0.05, secondary_fee_buyer=0.05)),
+}
+
 LENS_KEYS = ["system", "fan_only", "pop_wt", "ex_ante_fan", "ex_ante_popwt",
              "rawls_fan", "rawls_all", "rawls_ea_fan",
              "harsanyi_eq_fan", "harsanyi_eq_all",
@@ -43,6 +54,9 @@ class GridInvariants(unittest.TestCase):
         for rid, rule in RULES.items():
             for mul in MULS:
                 cls.grid[(rid, mul)] = simulate(rule, mul)
+        for rid, (rule, kwargs) in FEE_CAPPED_RULES.items():
+            for mul in MULS:
+                cls.grid[(rid, mul)] = simulate(rule, mul, **kwargs)
 
     def test_lens_scores_in_unit_interval(self):
         for key, r in self.grid.items():
@@ -71,8 +85,10 @@ class GridInvariants(unittest.TestCase):
                                  r["primary_sold"], key)
 
     def test_uncapped_rules_have_no_dark_market(self):
+        cap_of = {**{k: v.cap for k, v in RULES.items()},
+                  **{k: v[0].cap for k, v in FEE_CAPPED_RULES.items()}}
         for (rid, mul), r in self.grid.items():
-            if RULES[rid].cap is None:
+            if cap_of[rid] is None:
                 self.assertEqual(r["dark_sold"], 0, (rid, mul))
                 self.assertEqual(r["dark_unmatched"], 0, (rid, mul))
                 self.assertEqual(r["dark_prevalence"], 0.0, (rid, mul))

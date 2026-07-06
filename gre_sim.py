@@ -733,9 +733,21 @@ def simulate(rule: Rule, mul: float,
                 else:
                     net_upside = rule.cap - secondary_fee_seller   # may be negative
                     # Map net upside in [0, 0.25] → option value in [0.20, 0.70];
-                    # below break-even (net_upside ≤ 0) the option floors at 0.05.
+                    # below break-even (net_upside ≤ 0) it declines linearly to a
+                    # 0.05 floor.
+                    #
+                    # UK-2026 generalization (2026-07-05): the sub-break-even
+                    # branch was previously 0.05 + 0.15·cap/fee_seller — which at
+                    # the baseline fee (0.15) is algebraically IDENTICAL to
+                    # 0.20 + net_upside (0.05 + cap = 0.20 + cap − 0.15), but
+                    # fails to respond when the FEE side moves: under a platform
+                    # fee cap (UK 2026 regime: face-value resale + capped service
+                    # fees), a reseller recouping 95/100 has real option value a
+                    # 85/100 reseller lacks. The continuous form responds to both
+                    # sides of net_upside and reproduces baseline bit-for-bit at
+                    # fee=0.15 (verified against the committed cap-sweep CSVs).
                     if net_upside <= 0:
-                        resale_opt = 0.05 + max(0.0, 0.15 * (rule.cap / max(secondary_fee_seller, 1e-9)))
+                        resale_opt = max(0.05, 0.20 + net_upside)
                     else:
                         resale_opt = min(0.70, 0.20 + net_upside * 2.0)
                 resale_opt *= min(1.0, access_rate * 3)

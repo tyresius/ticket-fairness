@@ -28,7 +28,8 @@ random.seed(42)
 # Historical notes: Bounded 0% added 2026-04-21 alongside UK Face Value
 # (a distinct real-world comparator with a 2-ticket limit); RUNS_PER_POINT
 # raised 30 -> 100 by the C2 fix (MOE ~±0.010 vs ±0.018).
-from sweep_config import DEMAND_LEVELS, CAP_LEVELS, RUNS_PER_POINT, build_series
+from sweep_config import (DEMAND_LEVELS, CAP_LEVELS, RUNS_PER_POINT,
+                          BOUNDED_LABELS, UK2026_LABELS, build_series)
 
 SERIES = build_series()
 
@@ -51,7 +52,10 @@ for series in SERIES:
     sys.stdout.write(f"  {series['label']:<20}")
     sys.stdout.flush()
     for mul in DEMAND_LEVELS:
-        runs = [simulate(series["rule"], mul) for _ in range(RUNS_PER_POINT)]
+        # Per-series kwargs (2026-07-05): the UK-2026 regimes override the
+        # platform fee levels; everything else runs pure baseline.
+        skw = series.get("sim_kwargs", {})
+        runs = [simulate(series["rule"], mul, **skw) for _ in range(RUNS_PER_POINT)]
 
         system      = avg_f(runs, lambda r: r["system"])
         fan_only    = avg_f(runs, lambda r: r["fan_only"])
@@ -130,7 +134,7 @@ def optimal_cap_table(lens_key, lens_name):
         sq  = next(r for r in summary_rows if r["series"] == "Status Quo"      and r["demand"] == mul)
         dyn = next(r for r in summary_rows if r["series"] == "Dynamic Pricing" and r["demand"] == mul)
         uk  = next(r for r in summary_rows if r["series"] == "UK Face Value"   and r["demand"] == mul)
-        bounded = [r for r in summary_rows if r["series"].startswith("Bounded") and r["demand"] == mul]
+        bounded = [r for r in summary_rows if r["series"] in BOUNDED_LABELS and r["demand"] == mul]
         best = max(bounded, key=lambda r: r[lens_key])
         d_sq  = best[lens_key] - sq[lens_key]
         d_dyn = best[lens_key] - dyn[lens_key]
@@ -174,3 +178,29 @@ for series in SERIES:
         r = next(x for x in summary_rows if x["series"] == series["label"] and x["demand"] == mul)
         if r["dark_sold"] > 0 or r["dark_unmatched"] > 0:
             print(f"  {series['label']:<20} | {mul:>7} | {r['dark_sold']:>8} | {r['dark_unmatched']:>9}")
+
+
+# ── Console: UK 2026 policy comparison ────────────────────────────────────────
+# The Nov 2025 UK government response commits to a face-value resale cap WITH
+# capped platform fees. Question: does the fee cap rescue the 0% regime, or
+# does a modest positive cap still dominate under the same fee cap?
+print("\n── UK 2026 policy comparison (PopWt GR; fee-capped regimes vs baselines) ──")
+UK_COMPARE = ["UK Face Value", "Bounded 0%", "UK 2026 (0% + fee cap)",
+              "UK 2026 strict (0% + 2% fees)", "Bounded 10% + fee cap",
+              "Bounded 20% + fee cap", "Bounded 20%", "Status Quo"]
+print(f"{'Demand':>7} | " + " | ".join(f"{s[:14]:>14}" for s in UK_COMPARE))
+for mul in DEMAND_LEVELS:
+    cells = []
+    for s in UK_COMPARE:
+        v = next((r["gr_popwt"] for r in summary_rows
+                  if r["series"] == s and r["demand"] == mul), None)
+        cells.append(f"{v:14.4f}" if v is not None else " " * 14)
+    print(f"  {mul:>5} | " + " | ".join(cells))
+print("\n── Same table, dark-market tickets sold (the leakage question) ──")
+for mul in DEMAND_LEVELS:
+    cells = []
+    for s in UK_COMPARE:
+        v = next((r["dark_sold"] for r in summary_rows
+                  if r["series"] == s and r["demand"] == mul), None)
+        cells.append(f"{v:14}" if v is not None else " " * 14)
+    print(f"  {mul:>5} | " + " | ".join(cells))

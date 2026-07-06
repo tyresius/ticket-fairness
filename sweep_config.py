@@ -35,11 +35,36 @@ def build_series():
             )
             for c in CAP_LEVELS
         ],
+        # ── UK 2026 regime (added 2026-07-05) ─────────────────────────────────
+        # Modeled on the Nov 2025 UK government consultation response / May
+        # 2026 King's Speech draft Ticket Tout Ban Bill: resale capped at face
+        # value + unavoidable fees, AND platform service fees capped so fees
+        # can't undermine the price limit. We model the fee cap at 5% per side
+        # ("fee-capped") and 2% per side ("strict"); baseline platforms charge
+        # 15%/15% (GAO ~30% combined). The constructive comparator — keep the
+        # fee cap, raise the price cap — is Bounded 20% under the same 5% fees.
+        # NOTE: appended AFTER the existing grid so the seeded RNG stream for
+        # all pre-existing series is untouched (their CSV rows stay
+        # bit-for-bit identical).
+        dict(id="uk2026", label="UK 2026 (0% + fee cap)",
+             rule=Rule("UK 2026 (0% + fee cap)", cap=0.0, plimit=4, dyn_mul=None),
+             sim_kwargs=dict(secondary_fee_seller=0.05, secondary_fee_buyer=0.05)),
+        dict(id="uk2026_strict", label="UK 2026 strict (0% + 2% fees)",
+             rule=Rule("UK 2026 strict (0% + 2% fees)", cap=0.0, plimit=4, dyn_mul=None),
+             sim_kwargs=dict(secondary_fee_seller=0.02, secondary_fee_buyer=0.02)),
+        dict(id="bounded20_feecap", label="Bounded 20% + fee cap",
+             rule=Rule("Bounded 20% + fee cap", cap=0.20, plimit=4, dyn_mul=None),
+             sim_kwargs=dict(secondary_fee_seller=0.05, secondary_fee_buyer=0.05)),
+        dict(id="bounded10_feecap", label="Bounded 10% + fee cap",
+             rule=Rule("Bounded 10% + fee cap", cap=0.10, plimit=4, dyn_mul=None),
+             sim_kwargs=dict(secondary_fee_seller=0.05, secondary_fee_buyer=0.05)),
     ]
 
 REFERENCE_LABELS = ["Status Quo", "Dynamic Pricing", "UK Face Value"]
 BOUNDED_LABELS   = [f"Bounded {round(c * 100)}%" for c in CAP_LEVELS]
-SERIES_ORDER     = REFERENCE_LABELS + BOUNDED_LABELS
+UK2026_LABELS    = ["UK 2026 (0% + fee cap)", "UK 2026 strict (0% + 2% fees)",
+                    "Bounded 20% + fee cap", "Bounded 10% + fee cap"]
+SERIES_ORDER     = REFERENCE_LABELS + BOUNDED_LABELS + UK2026_LABELS
 
 # ── Chart palette (mirrored in generate_deck.js — keep in sync manually) ─────
 PALETTE = {
