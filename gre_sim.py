@@ -131,6 +131,18 @@ SECONDARY_FEE_BUYER  = 0.15  # buyer-side fee: fraction added on top of price th
 #       source of the calibration failure documented below; see status note.
 # where the deduction is systemic_fraud * SYSTEMIC_FRAUD_WEIGHT.
 #
+# CALIBRATION STATUS UPDATE (2026-07-05): SECOND ATTEMPT ALSO FAILED —
+# RETIREMENT RECOMMENDED. The proposed fix (transaction denominator:
+# dark_sold/(secondary_sold+dark_sold), see calibrate_tx_denominator.py)
+# yields a portfolio-weighted dark share of only 0.6-0.7% in capped regimes
+# vs the 13.6-13.7% anchors — a 20-25x gap. No honest K exists (it would
+# imply ~20 fraudulent transactions per dark transaction). Either the
+# model's dark channel is structurally thin relative to real black markets,
+# or the Bradshaw anchor (StubHub-funded) counts fraud far beyond
+# dark-channel transactions. Recommendation: keep SYSTEMIC_FRAUD_WEIGHT at
+# 0.0 permanently and cite the fee mechanism as the welfare argument; the
+# kwargs remain only as sensitivity probes. (Decision owner: Patrick.)
+#
 # CALIBRATION STATUS (2026-05-31): UNRESOLVED — DO NOT CITE A FIT.
 # An attempt to calibrate DARK_SYSTEMIC_K against the Ireland (13.6%), Victoria
 # (13.7%), and UK (3.8%) fraud anchors FAILED: with dark_prevalence defined as
