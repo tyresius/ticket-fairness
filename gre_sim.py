@@ -131,6 +131,11 @@ SECONDARY_FEE_BUYER  = 0.15  # buyer-side fee: fraction added on top of price th
 #       source of the calibration failure documented below; see status note.
 # where the deduction is systemic_fraud * SYSTEMIC_FRAUD_WEIGHT.
 #
+# STATUS: RETIRED (Patrick sign-off, 2026-07-05). The systemic-fraud
+# externality is permanently disabled in baseline; the fee mechanism carries
+# the welfare argument. Kwargs remain solely as sensitivity probes. History
+# below documents why (two failed calibrations under different denominators).
+#
 # CALIBRATION STATUS UPDATE (2026-07-05): SECOND ATTEMPT ALSO FAILED —
 # RETIREMENT RECOMMENDED. The proposed fix (transaction denominator:
 # dark_sold/(secondary_sold+dark_sold), see calibrate_tx_denominator.py)
