@@ -7,11 +7,17 @@ rulesets by a "would you accept these rules not knowing your position?"
 composite (floor / equality / average weighted), alongside standard welfare
 criteria (Rawlsian maximin, Harsanyi utilitarian, Pareto screening).
 
-**Headline finding to date:** a bounded resale cap in the ~15–25% band
-beats Status Quo, Dynamic Pricing, and UK-style face-value-only resale on
-fan-welfare lenses across demand levels — and the defensible band falls out
-of the secondary-platform fee structure (seller-side fee makes sub-~17.6%
-caps loss-making for legal resale) rather than being tuned to a target.
+**Headline finding to date:** a bounded resale cap beats Status Quo,
+Dynamic Pricing, and UK-style face-value-only resale on the
+population-weighted and system welfare lenses across demand levels. The
+optimal cap is demand-dependent within a **10–30% band** (a fixed 20% cap
+is never far from the per-demand optimum once markets are oversubscribed);
+under a UK-2026-style capped-fee regime the defensible band is **10–20%**.
+The band falls out of the secondary-platform fee structure (seller-side
+fee makes sub-~17.6% caps loss-making for legal resale) rather than being
+tuned to a target. The fan-price lens alone prefers the tightest cap —
+an accepted divergence (buyers prefer cheaper); the policy case rests on
+system function, not on out-cheapening face value.
 See `gre_sim.py`'s embedded changelog for the full audit history (A1–A6,
 B1, C1–C2, E1 fixes).
 

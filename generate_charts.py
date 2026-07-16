@@ -99,8 +99,13 @@ ax.set_title("Golden Rule Score by Cap Level × Demand\n(Darker = Higher Fairnes
              fontsize=13, color="#E8F0F8", pad=10)
 
 # Annotate optima
-opt_caps = {1.0: 50, 1.5: 30, 2.0: 20, 3.0: 10, 4.0: 5, 5.0: 10,
-            6.0: 15, 7.0: 15, 8.0: 20, 10.0: 20}
+# Stars computed from the data (2026-07-16) — previously a hardcoded dict of
+# April-era optima that silently went stale as the model evolved. Now always
+# reflects the CSV of record.
+opt_caps = {
+    d: CAP_VALS[BOUNDED.index(max(BOUNDED, key=lambda cs: get(cs, d, "gr_popwt") or 0))]
+    for d in DEMANDS
+}
 for d_idx, d in enumerate(DEMANDS):
     opt = opt_caps.get(d)
     if opt in CAP_VALS:
@@ -116,8 +121,8 @@ cbar.ax.yaxis.set_tick_params(color="#8AA0B0")
 plt.setp(cbar.ax.yaxis.get_ticklabels(), color="#8AA0B0", fontsize=8)
 
 # Highlight 20-25% band
-ax.axhspan(4.5, 5.5, color="#F4D03F", alpha=0.12, zorder=0)
-ax.annotate("20–25% band\n(robust range)", xy=(-0.5, 5.0),
+ax.axhspan(3.5, 5.5, color="#F4D03F", alpha=0.12, zorder=0)
+ax.annotate("20–25%: never far\nfrom optimal (≥2×)", xy=(-0.5, 5.0),
             xytext=(-0.45, 6.2), color="#F4D03F", fontsize=8,
             ha="left")
 
@@ -200,7 +205,7 @@ ax.annotate("20–25%: PopWt &\nSystem converge",
 
 ax.set_xlabel("Resale Cap (%)", fontsize=11)
 ax.set_ylabel("Golden Rule Score", fontsize=11)
-ax.set_title("Three-Lens Convergence at Demand 5×\n(Fan Lens Pending Scalper-Exit Modeling)",
+ax.set_title("Three-Lens View at Demand 5×\n(PopWt & System Converge on 20–25%; Fan-Price Lens Prefers the Tightest Cap)",
              fontsize=13, color="#E8F0F8", pad=12)
 ax.legend(loc="upper right", framealpha=0.15, fontsize=9)
 ax.grid(True)
@@ -228,12 +233,16 @@ params = [r["param"] for r in top]
 scores = [float(r["sensitivity_score"]) for r in top]
 groups = [r["group"] for r in top]
 
+# Keys must match the `group` column values in sensitivity_rankings.csv
+# (fixed 2026-07-16: previously "utility_w"/"behavioral" never matched the
+# CSV's "util_w"/"agent", so those bars silently fell back to gray).
 group_colors = {
     "gr_w":       "#F4D03F",
     "structural": "#5BA4CF",
     "dark":       "#E05C5C",
-    "utility_w":  "#3D9B70",
-    "behavioral": "#E08B3A",
+    "util_w":     "#3D9B70",
+    "agent":      "#E08B3A",
+    "exit":       "#9B59B6",
 }
 bar_colors = [group_colors.get(g, "#888") for g in groups]
 
@@ -241,22 +250,17 @@ fig, ax = plt.subplots(figsize=(10, 5.5))
 bars = ax.barh(params[::-1], scores[::-1], color=bar_colors[::-1],
                edgecolor="#0F1923", linewidth=0.5)
 
-# Add a "dark market zone" annotation
-dark_params = [p for p, g in zip(params, groups) if g == "dark"]
-dark_indices = [params[::-1].index(p) for p in dark_params if p in params[::-1]]
-
-ax.axvline(0.3, color="#888", linestyle=":", alpha=0.5, linewidth=1)
-ax.annotate("Dark market parameters\nhave LOW sensitivity\n— policy robust to\nunsourced estimates",
-            xy=(0.05, 1.5), xytext=(0.32, 3),
-            color="#E05C5C", fontsize=8.5,
-            arrowprops=dict(arrowstyle="->", color="#E05C5C", lw=1))
+# No in-chart annotation (2026-07-16): the earlier "dark params have LOW
+# sensitivity" callout was false under current rankings (dark_leakage_base is
+# top-10 on PopWt/System and can shift the in-band optimum), and any replacement
+# text overlapped the bars. The slide footer carries the honest caveat instead.
 
 legend_patches = [mpatches.Patch(color=v, label=k.replace("_", " ").title())
                   for k, v in group_colors.items()]
 ax.legend(handles=legend_patches, loc="lower right", framealpha=0.15, fontsize=9)
 ax.set_xlabel("Sensitivity Score", fontsize=11)
-ax.set_title("Parameter Sensitivity — Policy Robust Across All Key Knobs\n"
-             "Dark Market Parameters Do Not Move the Optimal Cap",
+ax.set_title("Parameter Sensitivity — No Perturbation Leaves the Bounded Regime\n"
+             "Scoring Weights & Scalper Decay Dominate; Dark-Market Params Mid-Table",
              fontsize=13, color="#E8F0F8", pad=12)
 ax.grid(True, axis="x")
 fig.tight_layout()
