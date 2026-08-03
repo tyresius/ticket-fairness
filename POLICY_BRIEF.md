@@ -169,6 +169,22 @@ stage." The recommendation here is that the evidence supports the middle of
 the range the Government itself consulted on, rather than its strictest
 end.
 
+**A band rather than a single figure, for a substantive reason.** The
+best-performing ceiling is not the same for every event. Across
+oversubscribed events our runs put it between 10% and 30%, and above
+roughly three times oversubscribed it rises steadily with scarcity: around
+10% for a moderately hot event, around 20% at five times demand, and around
+30% for the most extreme cases. The logic is straightforward — the greater
+the gap between the ceiling and what someone will pay, the stronger the
+pull off-platform, so the hottest events need a slightly higher ceiling to
+keep resale lawful and visible. This is a finding, not a hedge: it means any
+single national number is necessarily wrong for some class of event, and a
+face-value cap is furthest wrong precisely for the stadium-scale events that
+generate the most touting and the most public anger. We recommend 10–20% as
+a starting band because it performs close to the optimum across the range of
+events a general rule has to cover; a Government minded to set one figure
+should understand which events it is choosing to fit.
+
 A ceiling in that band keeps fan-to-fan resale lawful and viable, keeps it
 on platforms where the new monitoring duty can actually operate, and leaves
 professional touting without a business model. A face-value ceiling
