@@ -121,11 +121,16 @@ for a lawful resale market to exist at all.
 
 **The ceiling is the stronger of the two levers.** Against the current
 market, the fee cap alone improves population-weighted fan welfare by
-+0.06 to +0.16 on our index. Adding a 20% ceiling to the same fee cap
-improves it by +0.08 to +0.19 — **roughly double the gain, with a median
-ratio of 2.2× and a range of 1.1× to 2.5×** depending on how oversubscribed
-the event is. The two measures reinforce each other; the fee cap is worth
-keeping. But it is the ceiling that does the heavier work.
++0.06 to +0.27 on our index. Adding a 20% ceiling to the same fee cap
+improves it by +0.08 to +0.25 — **a median of 2.13× the gain from the fee
+cap alone.** The relationship is not uniform, and we should be explicit
+about that: the ceiling's added value ranges from 2.5× at mildly
+oversubscribed events down to roughly parity at one demand level (4×,
+where the fee cap alone happens to perform unusually well). The two
+measures reinforce each other across almost the whole range, and the fee
+cap is worth keeping on its own. But at the high-demand events that
+generate the touting problem in the first place, it is the ceiling that
+does the heavier work.
 
 **A 10–20% ceiling still destroys the touting business.** This is the
 objection we expected and tested directly. Compared with the current
@@ -162,12 +167,22 @@ the platform duty to monitor, the resale quantity limit, the CMA's new
 powers. Change one number: set the resale ceiling in the **10–20% band
 above face value** rather than at face value.
 
-This is not an exotic request. The *Putting Fans First* consultation put
-four capped options to respondents — no uplift, 10% or less, 10–20%, and
-20–30% — and stated that the Government had "no favoured approach at this
-stage." The recommendation here is that the evidence supports the middle of
-the range the Government itself consulted on, rather than its strictest
-end.
+This is not an exotic request, on two counts. The *Putting Fans First*
+consultation put four capped options to respondents — no uplift, 10% or
+less, 10–20%, and 20–30% — and stated that the Government had "no favoured
+approach at this stage." The recommendation here is that the evidence
+supports the middle of the range the Government itself consulted on,
+rather than its strictest end.
+
+It is also no longer hypothetical. In July 2026 the Council of the District
+of Columbia unanimously passed the RESALE Act, which caps resale at **10%
+above face value alongside a 10% cap on fees** — the same two-lever design
+the draft Bill proposes, but with the ceiling set above zero. That pairing
+is one we model directly. On our index the DC configuration outperforms the
+face-value-plus-fee-cap configuration at **eight of nine** oversubscribed
+demand levels. Two jurisdictions legislating in the same year have reached
+the same structure and differed only on the number; the evidence favours
+DC's choice.
 
 **A band rather than a single figure, for a substantive reason.** The
 best-performing ceiling is not the same for every event. Across
@@ -244,6 +259,15 @@ the current market and a face-value cap.
    two-year fraud incidence of 3.8% (UK), 13.6% (Ireland), 13.7% (Victoria).
    Cited with the limitations noted in the text.
 9. House of Commons Library, *Ticket resales*, briefing SN04715.
+10. Council of the District of Columbia, *Restricting Egregious Scalping
+    Against Live Entertainment (RESALE) Act*, final approval 15 July 2026 —
+    resale capped at 10% above face value with a further 10% cap on fees;
+    effective 1 January subject to congressional review.
+11. *United States v. Live Nation Entertainment* (S.D.N.Y.) — DOJ settlement
+    9 March 2026 (behavioural remedies, including a 15% fee cap; no
+    divestiture); jury verdict for the plaintiff states 15 April 2026 finding
+    unlawful monopolisation. Neither the settlement nor the verdict addresses
+    resale price.
 
 *The author is a US-based independent researcher with no financial interest
 in any primary or secondary ticketing business, and no relationship with

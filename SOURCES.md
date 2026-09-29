@@ -119,11 +119,61 @@ official channel to submit into; the window is imminent, not open.**
   resellers >70% of volume; ~80% of uncapped platform volume professional;
   £404M resale on 1.5M tickets. Anchors scalper concentration.
 
-## Behavior — grade B (scalper-lobby data; disclose)
+## US legal and legislative developments — grade A (VERIFIED 2026-09-29)
+
+- **United States v. Live Nation Entertainment (SDNY).** DOJ **settled
+  mid-trial on 9 March 2026** (trial began 2 March). Settlement is
+  **behavioural only — no divestiture**: multi-vendor ticketing at venues,
+  outside promoters admitted to up to 50% of amphitheatre inventory, and
+  certain fees capped at **15%**. There is **no financial component to the
+  DOJ settlement itself**; the **$280M** figure is a settlement *fund* for
+  plaintiff states' damages and civil-penalty claims, of which six "Settling
+  States" took ~$18.6M.
+  A coalition of states refused to settle and continued. On **15 April 2026**
+  a **jury** returned a verdict for the states on all federal and state
+  claims: unlawful monopolisation of primary ticketing and amphitheatres, and
+  unlawful tying of amphitheatres to promotion services. The jury found an
+  overcharge of **$1.72 per ticket** across 21 states and DC.
+  ⚠️ **Three corrections to how this is commonly stated, including in our own
+  earlier deck and in the Sept 2026 external audit:** (1) this is a **civil**
+  case — the correct term is *found liable* / *found to have monopolised*,
+  **not "guilty"**; (2) the April verdict was won by **the states**, not the
+  DOJ, which had already withdrawn; (3) sources differ on the state count
+  (33 states, or 36 states + DC) — prefer "a coalition of states" unless
+  citing one source precisely.
+  https://en.wikipedia.org/wiki/United_States_v._Live_Nation_Entertainment
+  https://ag.ny.gov/press-release/2026/attorney-general-james-and-coalition-states-win-trial-against-live-nation-and
+
+- **Washington DC — RESALE Act** ("Restricting Egregious Scalping Against
+  Live Entertainment"). Passed **unanimously** by the DC Council on final
+  reading **15 July 2026**; takes effect **1 January** subject to the 30-day
+  congressional review period. Caps resale at **10% above face value** *plus*
+  a **10% cap on fees** (so a consumer pays at most 120% of face, all-in).
+  Also bans speculative ticket sales, requires registration for anyone
+  advertising 50+ tickets a year, and prohibits surveillance pricing.
+  **Why this matters to us:** it is the first US jurisdiction to legislate a
+  **bounded non-zero ceiling**, and it uses the *same two-lever structure*
+  (price ceiling + fee cap) as the UK draft Bill while setting the ceiling
+  above zero. It corresponds closely to our modelled `Bounded 10% + fee cap`
+  series. On PopWt GR that configuration beats the UK's `0% + fee cap`
+  configuration at **8 of 9** oversubscribed demand levels (mean +0.044).
+  https://dccouncil.gov/council-gives-final-approval-to-resale-act-regulating-ticket-sales-and-capping-ticket-resale-prices/
+
+## Behavior — grade B (industry-derived; disclose)
 
 - **Protect Ticket Rights / Automatiq** (July 2025): 62% of events resale below
   face; ~33% price decay to event day. Anchors demand-distribution portfolio
   and the 3-round markdown decay.
+- **American Consumer Institute** (June 2025): 62% of events with below-face
+  resale; **$414M** in consumer savings in 2024; average secondary price falls
+  $29 between on-sale and the final month.
+  ⚠️ **Not independent corroboration.** The ACI analysis is built on
+  **186,113 transactions supplied by Automatiq** — the same resale-industry
+  data provider behind the PTR figure above. A Sept 2026 external audit
+  presented ACI as a separate source confirming the 62% number; it is the
+  same dataset with a second analyst. ACI is a market-oriented think tank and
+  the finding was republished by IPI. Cite as grade B with the data
+  provenance stated, never as independent confirmation.
 
 ## Enforcement — grade B/C (advocacy source; verify before load-bearing use)
 
