@@ -177,12 +177,33 @@ rather than its strictest end.
 It is also no longer hypothetical. In July 2026 the Council of the District
 of Columbia unanimously passed the RESALE Act, which caps resale at **10%
 above face value alongside a 10% cap on fees** — the same two-lever design
-the draft Bill proposes, but with the ceiling set above zero. That pairing
-is one we model directly. On our index the DC configuration outperforms the
-face-value-plus-fee-cap configuration at **eight of nine** oversubscribed
-demand levels. Two jurisdictions legislating in the same year have reached
-the same structure and differed only on the number; the evidence favours
-DC's choice.
+the draft Bill proposes, but with the ceiling set above zero.
+
+That pairing — a bounded non-zero ceiling combined with a cap on platform
+fees — is the structure this model identified on its own, from simulation,
+before the DC result was known to us. We claim no influence on it, and the
+convergence is the point: two methods, one arrived at by legislative
+process and one by modelling, reached the same design and differ only on
+where the ceiling sits.
+
+On that question the model is direct. Holding fee rules identical and
+varying **only** the ceiling, a 10% ceiling outperforms a face-value
+ceiling on population-weighted welfare at **every oversubscribed demand
+level we tested** (paired runs, N=250–300 per point; all differences
+statistically significant). The result holds when the resale-option term is
+removed from the index entirely, when DC's actual 10% fee structure is used
+in place of our original assumption, and when the face-value arm is given a
+tighter quantity limit and stronger enforcement than we first modelled.
+
+Two honest qualifications. First, this is a controlled comparison of
+ceiling level, not a head-to-head of two legislative packages: several
+provisions on each side — DC's speculative-sale ban and reseller
+registration, the draft Bill's platform monitoring duty and CMA powers —
+are outside the model. Second, the advantage is specific to the ceiling.
+If a face-value regime instead tightened its **fee** cap to around 2%, the
+ceiling advantage narrows sharply and reverses at moderate demand. The
+case for a positive ceiling is strong but it is not unconditional, and we
+would rather state the condition than have it found.
 
 **A band rather than a single figure, for a substantive reason.** The
 best-performing ceiling is not the same for every event. Across
