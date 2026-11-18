@@ -1,0 +1,75 @@
+Role-proof test: 11 rules x 11 continuations x 10 demand levels x 100 seeds, 6 scorings
+  demand    1  rule  1/11  elapsed      6s  demand    1  rule  2/11  elapsed     12s  demand    1  rule  3/11  elapsed     16s  demand    1  rule  4/11  elapsed     21s  demand    1  rule  5/11  elapsed     27s  demand    1  rule  6/11  elapsed     33s  demand    1  rule  7/11  elapsed     39s  demand    1  rule  8/11  elapsed     44s  demand    1  rule  9/11  elapsed     51s  demand    1  rule 10/11  elapsed     57s  demand    1  rule 11/11  elapsed     63s  demand  1.5  rule  1/11  elapsed     74s  demand  1.5  rule  2/11  elapsed     82s  demand  1.5  rule  3/11  elapsed     88s  demand  1.5  rule  4/11  elapsed     96s  demand  1.5  rule  5/11  elapsed    104s  demand  1.5  rule  6/11  elapsed    112s  demand  1.5  rule  7/11  elapsed    121s  demand  1.5  rule  8/11  elapsed    129s  demand  1.5  rule  9/11  elapsed    138s  demand  1.5  rule 10/11  elapsed    147s  demand  1.5  rule 11/11  elapsed    157s  demand    2  rule  1/11  elapsed    173s  demand    2  rule  2/11  elapsed    183s  demand    2  rule  3/11  elapsed    194s  demand    2  rule  4/11  elapsed    205s  demand    2  rule  5/11  elapsed    216s  demand    2  rule  6/11  elapsed    228s  demand    2  rule  7/11  elapsed    239s  demand    2  rule  8/11  elapsed    248s  demand    2  rule  9/11  elapsed    257s  demand    2  rule 10/11  elapsed    270s  demand    2  rule 11/11  elapsed    284s  demand    3  rule  1/11  elapsed    307s  demand    3  rule  2/11  elapsed    322s  demand    3  rule  3/11  elapsed    338s  demand    3  rule  4/11  elapsed    355s  demand    3  rule  5/11  elapsed    371s  demand    3  rule  6/11  elapsed    388s  demand    3  rule  7/11  elapsed    401s  demand    3  rule  8/11  elapsed    416s  demand    3  rule  9/11  elapsed    432s  demand    3  rule 10/11  elapsed    450s  demand    3  rule 11/11  elapsed    469s  demand    4  rule  1/11  elapsed    496s  demand    4  rule  2/11  elapsed    516s  demand    4  rule  3/11  elapsed    537s  demand    4  rule  4/11  elapsed    557s  demand    4  rule  5/11  elapsed    575s  demand    4  rule  6/11  elapsed    598s  demand    4  rule  7/11  elapsed    619s  demand    4  rule  8/11  elapsed    638s  demand    4  rule  9/11  elapsed    647s  demand    4  rule 10/11  elapsed    656s  demand    4  rule 11/11  elapsed    666s  demand    5  rule  1/11  elapsed    680s  demand    5  rule  2/11  elapsed    690s  demand    5  rule  3/11  elapsed    701s  demand    5  rule  4/11  elapsed    712s  demand    5  rule  5/11  elapsed    723s  demand    5  rule  6/11  elapsed    734s  demand    5  rule  7/11  elapsed    746s  demand    5  rule  8/11  elapsed    757s  demand    5  rule  9/11  elapsed    769s  demand    5  rule 10/11  elapsed    781s  demand    5  rule 11/11  elapsed    793s  demand    6  rule  1/11  elapsed    811s  demand    6  rule  2/11  elapsed    824s  demand    6  rule  3/11  elapsed    838s  demand    6  rule  4/11  elapsed    852s  demand    6  rule  5/11  elapsed    866s  demand    6  rule  6/11  elapsed    881s  demand    6  rule  7/11  elapsed    895s  demand    6  rule  8/11  elapsed    910s  demand    6  rule  9/11  elapsed    925s  demand    6  rule 10/11  elapsed    940s  demand    6  rule 11/11  elapsed    956s  demand    7  rule  1/11  elapsed    977s  demand    7  rule  2/11  elapsed    992s  demand    7  rule  3/11  elapsed   1008s  demand    7  rule  4/11  elapsed   1026s  demand    7  rule  5/11  elapsed   1043s  demand    7  rule  6/11  elapsed   1061s  demand    7  rule  7/11  elapsed   1078s  demand    7  rule  8/11  elapsed   1096s  demand    7  rule  9/11  elapsed   1113s  demand    7  rule 10/11  elapsed   1131s  demand    7  rule 11/11  elapsed   1148s  demand    8  rule  1/11  elapsed   1172s  demand    8  rule  2/11  elapsed   1190s  demand    8  rule  3/11  elapsed   1209s  demand    8  rule  4/11  elapsed   1229s  demand    8  rule  5/11  elapsed   1250s  demand    8  rule  6/11  elapsed   1270s  demand    8  rule  7/11  elapsed   1289s  demand    8  rule  8/11  elapsed   1310s  demand    8  rule  9/11  elapsed   1330s  demand    8  rule 10/11  elapsed   1350s  demand    8  rule 11/11  elapsed   1370s  demand   10  rule  1/11  elapsed   1402s  demand   10  rule  2/11  elapsed   1424s  demand   10  rule  3/11  elapsed   1451s  demand   10  rule  4/11  elapsed   1476s  demand   10  rule  5/11  elapsed   1503s  demand   10  rule  6/11  elapsed   1529s  demand   10  rule  7/11  elapsed   1554s  demand   10  rule  8/11  elapsed   1580s  demand   10  rule  9/11  elapsed   1606s  demand   10  rule 10/11  elapsed   1632s  demand   10  rule 11/11  elapsed   1658s
+Wrote role-proof-summary.csv and role-proof-roles.csv
+
+Verdict against the pre-stated criteria (main run: kappa = 0, no proceeds):
+  demand  1.5: role-proof ['none']  | ex-ante best Status Quo, ex-post best Bounded 30%  <- winners differ
+  demand    2: role-proof ['Bounded 40%']  | ex-ante best Bounded 40%, ex-post best Bounded 40%
+  demand    3: role-proof ['none']  | ex-ante best Bounded 40%, ex-post best Status Quo  <- winners differ
+  demand    4: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    5: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    6: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    7: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    8: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand   10: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  10-20% cap role-proof at 0 of 9 oversubscribed levels -> KILL (pass needs 6 of 9)
+
+Variant kappa = 0.5, proceeds = False:
+  demand  1.5: role-proof ['none']  | ex-ante best Status Quo, ex-post best Bounded 30%  <- winners differ
+  demand    2: role-proof ['Bounded 40%']  | ex-ante best Bounded 40%, ex-post best Bounded 40%
+  demand    3: role-proof ['none']  | ex-ante best Bounded 40%, ex-post best Status Quo  <- winners differ
+  demand    4: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    5: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    6: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    7: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    8: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand   10: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  10-20% cap role-proof at 0 of 9 oversubscribed levels (variant; no verdict)
+
+Variant kappa = 1.0, proceeds = False:
+  demand  1.5: role-proof ['none']  | ex-ante best Status Quo, ex-post best Bounded 30%  <- winners differ
+  demand    2: role-proof ['Bounded 40%']  | ex-ante best Bounded 40%, ex-post best Bounded 40%
+  demand    3: role-proof ['none']  | ex-ante best Bounded 40%, ex-post best Status Quo  <- winners differ
+  demand    4: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    5: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    6: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    7: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    8: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand   10: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  10-20% cap role-proof at 0 of 9 oversubscribed levels (variant; no verdict)
+
+Variant kappa = 0.0, proceeds = True:
+  demand  1.5: role-proof ['none']  | ex-ante best Status Quo, ex-post best Bounded 30%  <- winners differ
+  demand    2: role-proof ['Bounded 40%']  | ex-ante best Bounded 40%, ex-post best Bounded 40%
+  demand    3: role-proof ['none']  | ex-ante best Bounded 30%, ex-post best Status Quo  <- winners differ
+  demand    4: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    5: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    6: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    7: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    8: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand   10: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  10-20% cap role-proof at 0 of 9 oversubscribed levels (variant; no verdict)
+
+Variant kappa = 0.5, proceeds = True:
+  demand  1.5: role-proof ['none']  | ex-ante best Status Quo, ex-post best Bounded 30%  <- winners differ
+  demand    2: role-proof ['Bounded 40%']  | ex-ante best Bounded 40%, ex-post best Bounded 40%
+  demand    3: role-proof ['none']  | ex-ante best Bounded 30%, ex-post best Status Quo  <- winners differ
+  demand    4: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    5: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    6: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    7: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    8: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand   10: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  10-20% cap role-proof at 0 of 9 oversubscribed levels (variant; no verdict)
+
+Variant kappa = 1.0, proceeds = True:
+  demand  1.5: role-proof ['none']  | ex-ante best Status Quo, ex-post best Bounded 30%  <- winners differ
+  demand    2: role-proof ['Bounded 40%']  | ex-ante best Bounded 40%, ex-post best Bounded 40%
+  demand    3: role-proof ['none']  | ex-ante best Bounded 30%, ex-post best Status Quo  <- winners differ
+  demand    4: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    5: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    6: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    7: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    8: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand   10: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  10-20% cap role-proof at 0 of 9 oversubscribed levels (variant; no verdict)

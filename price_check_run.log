@@ -1,0 +1,65 @@
+Price-score check (PRICE_SCORE_CHECK.md)
+1. main grid
+  grid: Status Quo                        grid: Dynamic Pricing                   grid: UK Face Value                     grid: Bounded 0%                        grid: Bounded 5%                        grid: Bounded 10%                       grid: Bounded 15%                       grid: Bounded 20%                       grid: Bounded 25%                       grid: Bounded 30%                       grid: Bounded 40%                       grid: Bounded 50%                       grid: UK 2026 (0% + fee cap)            grid: UK 2026 strict (0% + 2% fees)     grid: Bounded 20% + fee cap             grid: Bounded 10% + fee cap           
+
+Harness check 2: P0 grid vs rescore-grid.csv S2 -> 0 mismatches of 450
+
+2. role-proof (7 scorings)
+  demand    1  rule  1/11  elapsed     11s  demand    1  rule  2/11  elapsed     20s  demand    1  rule  3/11  elapsed     30s  demand    1  rule  4/11  elapsed     39s  demand    1  rule  5/11  elapsed     48s  demand    1  rule  6/11  elapsed     57s  demand    1  rule  7/11  elapsed     66s  demand    1  rule  8/11  elapsed     74s  demand    1  rule  9/11  elapsed     83s  demand    1  rule 10/11  elapsed     92s  demand    1  rule 11/11  elapsed    102s  demand  1.5  rule  1/11  elapsed    120s  demand  1.5  rule  2/11  elapsed    131s  demand  1.5  rule  3/11  elapsed    143s  demand  1.5  rule  4/11  elapsed    153s  demand  1.5  rule  5/11  elapsed    163s  demand  1.5  rule  6/11  elapsed    174s  demand  1.5  rule  7/11  elapsed    184s  demand  1.5  rule  8/11  elapsed    195s  demand  1.5  rule  9/11  elapsed    206s  demand  1.5  rule 10/11  elapsed    218s  demand  1.5  rule 11/11  elapsed    230s  demand    2  rule  1/11  elapsed    250s  demand    2  rule  2/11  elapsed    260s  demand    2  rule  3/11  elapsed    268s  demand    2  rule  4/11  elapsed    277s  demand    2  rule  5/11  elapsed    285s  demand    2  rule  6/11  elapsed    294s  demand    2  rule  7/11  elapsed    302s  demand    2  rule  8/11  elapsed    311s  demand    2  rule  9/11  elapsed    320s  demand    2  rule 10/11  elapsed    329s  demand    2  rule 11/11  elapsed    339s  demand    3  rule  1/11  elapsed    356s  demand    3  rule  2/11  elapsed    367s  demand    3  rule  3/11  elapsed    378s  demand    3  rule  4/11  elapsed    387s  demand    3  rule  5/11  elapsed    397s  demand    3  rule  6/11  elapsed    407s  demand    3  rule  7/11  elapsed    416s  demand    3  rule  8/11  elapsed    426s  demand    3  rule  9/11  elapsed    436s  demand    3  rule 10/11  elapsed    448s  demand    3  rule 11/11  elapsed    459s  demand    4  rule  1/11  elapsed    476s  demand    4  rule  2/11  elapsed    488s  demand    4  rule  3/11  elapsed    500s  demand    4  rule  4/11  elapsed    512s  demand    4  rule  5/11  elapsed    524s  demand    4  rule  6/11  elapsed    537s  demand    4  rule  7/11  elapsed    554s  demand    4  rule  8/11  elapsed    568s  demand    4  rule  9/11  elapsed    581s  demand    4  rule 10/11  elapsed    595s  demand    4  rule 11/11  elapsed    610s  demand    5  rule  1/11  elapsed    634s  demand    5  rule  2/11  elapsed    665s  demand    5  rule  3/11  elapsed    682s  demand    5  rule  4/11  elapsed    697s  demand    5  rule  5/11  elapsed    714s  demand    5  rule  6/11  elapsed    730s  demand    5  rule  7/11  elapsed    746s  demand    5  rule  8/11  elapsed    776s  demand    5  rule  9/11  elapsed    802s  demand    5  rule 10/11  elapsed    820s  demand    5  rule 11/11  elapsed    838s  demand    6  rule  1/11  elapsed    866s  demand    6  rule  2/11  elapsed    884s  demand    6  rule  3/11  elapsed    904s  demand    6  rule  4/11  elapsed    925s  demand    6  rule  5/11  elapsed    946s  demand    6  rule  6/11  elapsed    967s  demand    6  rule  7/11  elapsed    989s  demand    6  rule  8/11  elapsed   1010s  demand    6  rule  9/11  elapsed   1032s  demand    6  rule 10/11  elapsed   1054s  demand    6  rule 11/11  elapsed   1077s  demand    7  rule  1/11  elapsed   1108s  demand    7  rule  2/11  elapsed   1155s  demand    7  rule  3/11  elapsed   1216s  demand    7  rule  4/11  elapsed   1245s  demand    7  rule  5/11  elapsed   1270s  demand    7  rule  6/11  elapsed   1296s  demand    7  rule  7/11  elapsed   1321s  demand    7  rule  8/11  elapsed   1347s  demand    7  rule  9/11  elapsed   1372s  demand    7  rule 10/11  elapsed   1398s  demand    7  rule 11/11  elapsed   1424s  demand    8  rule  1/11  elapsed   1460s  demand    8  rule  2/11  elapsed   1485s  demand    8  rule  3/11  elapsed   1514s  demand    8  rule  4/11  elapsed   1543s  demand    8  rule  5/11  elapsed   1572s  demand    8  rule  6/11  elapsed   1602s  demand    8  rule  7/11  elapsed   1661s  demand    8  rule  8/11  elapsed   1738s  demand    8  rule  9/11  elapsed   1780s  demand    8  rule 10/11  elapsed   1832s  demand    8  rule 11/11  elapsed   1872s  demand   10  rule  1/11  elapsed   1918s  demand   10  rule  2/11  elapsed   1950s  demand   10  rule  3/11  elapsed   1988s  demand   10  rule  4/11  elapsed   2025s  demand   10  rule  5/11  elapsed   2061s  demand   10  rule  6/11  elapsed   2098s  demand   10  rule  7/11  elapsed   2135s  demand   10  rule  8/11  elapsed   2172s  demand   10  rule  9/11  elapsed   2209s  demand   10  rule 10/11  elapsed   2246s  demand   10  rule 11/11  elapsed   2283s
+
+Harness check 1: P0 role-proof vs role-proof-summary.csv -> 0 mismatches of 220
+
+Verdicts (criteria in PRICE_SCORE_CHECK.md), 2816s:
+
+R1 [P0] 10-20% cap role-proof at 0 of 9 levels
+  demand  1.5: role-proof ['none']  | ex-ante best Status Quo, ex-post best Bounded 30%  <- winners differ
+  demand    2: role-proof ['Bounded 40%']  | ex-ante best Bounded 40%, ex-post best Bounded 40%
+  demand    3: role-proof ['none']  | ex-ante best Bounded 40%, ex-post best Status Quo  <- winners differ
+  demand    4: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    5: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    6: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    7: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    8: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand   10: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+C1 [P0] PopWt-best cap by demand: 1.5x 50%, 2x 50%, 3x 50%, 4x 50%, 5x 50%, 6x 25%, 7x 15%, 8x 20%, 10x 20%
+C6 [P0] best bounded loses at: ['3x pop_wt vs Status Quo', '3x system vs Status Quo']
+C7 [P0] best 10-20% minus status quo, mean fan utility: 1.5x -0.0530, 2x +0.0287, 3x -0.0111, 4x +0.0082, 5x -0.0029, 6x -0.0023, 7x -0.0028, 8x -0.0027, 10x -0.0028
+
+R1 [P1] 10-20% cap role-proof at 0 of 9 levels
+  demand  1.5: role-proof ['none']  | ex-ante best Status Quo, ex-post best Bounded 30%  <- winners differ
+  demand    2: role-proof ['Bounded 40%']  | ex-ante best Bounded 40%, ex-post best Bounded 40%
+  demand    3: role-proof ['none']  | ex-ante best Bounded 40%, ex-post best Status Quo  <- winners differ
+  demand    4: role-proof ['Bounded 40%']  | ex-ante best Bounded 20%, ex-post best Bounded 40%  <- winners differ
+  demand    5: role-proof ['Bounded 40%', 'Bounded 50%']  | ex-ante best Bounded 40%, ex-post best Bounded 40%
+  demand    6: role-proof ['none']  | ex-ante best UK Face Value, ex-post best Status Quo  <- winners differ
+  demand    7: role-proof ['Bounded 30%', 'Bounded 40%', 'Bounded 50%']  | ex-ante best Bounded 40%, ex-post best Bounded 30%  <- winners differ
+  demand    8: role-proof ['Bounded 40%', 'Bounded 50%']  | ex-ante best Bounded 50%, ex-post best Bounded 40%  <- winners differ
+  demand   10: role-proof ['Bounded 40%', 'Bounded 50%']  | ex-ante best Bounded 40%, ex-post best Bounded 40%
+C1 [P1] PopWt-best cap by demand: 1.5x 50%, 2x 50%, 3x 50%, 4x 50%, 5x 50%, 6x 25%, 7x 15%, 8x 20%, 10x 20%
+C6 [P1] best bounded loses at: ['3x pop_wt vs Status Quo', '3x pop_wt vs Dynamic Pricing', '3x system vs Status Quo', '4x pop_wt vs Dynamic Pricing', '6x pop_wt vs Dynamic Pricing', '6x system vs Dynamic Pricing']
+C7 [P1] best 10-20% minus status quo, mean fan utility: 1.5x -0.0516, 2x +0.0344, 3x +0.0163, 4x +0.0643, 5x +0.0455, 6x +0.0193, 7x +0.0235, 8x +0.0270, 10x +0.0218
+
+R1 [P2] 10-20% cap role-proof at 0 of 9 levels
+  demand  1.5: role-proof ['none']  | ex-ante best Bounded 40%, ex-post best Bounded 30%  <- winners differ
+  demand    2: role-proof ['Bounded 40%']  | ex-ante best Bounded 40%, ex-post best Bounded 40%
+  demand    3: role-proof ['none']  | ex-ante best Bounded 40%, ex-post best Status Quo  <- winners differ
+  demand    4: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    5: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    6: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    7: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand    8: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+  demand   10: role-proof ['Status Quo']  | ex-ante best Status Quo, ex-post best Status Quo
+C1 [P2] PopWt-best cap by demand: 1.5x 40%, 2x 30%, 3x 50%, 4x 50%, 5x 50%, 6x 20%, 7x 15%, 8x 15%, 10x 20%
+C6 [P2] best bounded loses at: ['3x system vs Status Quo']
+C7 [P2] best 10-20% minus status quo, mean fan utility: 1.5x -0.0240, 2x +0.0301, 3x -0.0122, 4x +0.0065, 5x -0.0084, 6x -0.0144, 7x -0.0105, 8x -0.0070, 10x -0.0056
+
+R1: FAILS   (P0 reference: false)
+C1: FAILS   (P0 reference: false)
+C6: FAILS   (P0 reference: false)
+C7: FAILS
+
+Sensitivity (no verdict): R1 at kappa 0.5 and 1
+  [P1] kappa 0.5: 10-20% cap role-proof at 0 of 9 levels
+  [P1] kappa 1.0: 10-20% cap role-proof at 0 of 9 levels
+  [P2] kappa 0.5: 10-20% cap role-proof at 0 of 9 levels
+  [P2] kappa 1.0: 10-20% cap role-proof at 0 of 9 levels
