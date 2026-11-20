@@ -22,3 +22,7 @@ uk2026_sweep.log
 # used for review rounds; carry inline [Note: ...] annotations). The tracked
 # GRE-pitch-deck.pptx/.pdf are the artifacts of record.
 GRE-pitch-deck_PT.*
+GRE-pitch-deck edited*.pptx
+
+# Local launch configs (machine-specific)
+.claude/launch.json

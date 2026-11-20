@@ -1,0 +1,36 @@
+  grid: Status Quo                        grid: Dynamic Pricing                   grid: UK Face Value                     grid: Bounded 0%                        grid: Bounded 5%                        grid: Bounded 10%                       grid: Bounded 15%                       grid: Bounded 20%                       grid: Bounded 25%                       grid: Bounded 30%                       grid: Bounded 40%                       grid: Bounded 50%                       grid: UK 2026 (0% + fee cap)            grid: UK 2026 strict (0% + 2% fees)     grid: Bounded 20% + fee cap             grid: Bounded 10% + fee cap           
+Harness check 1: S0 vs stored cap-sweep-summary.csv -> 0 mismatches
+  paired: C4 fees 5%/side                           paired: C4 fees 10%/side                          paired: C5 tough face value, fees 10%/side      
+  robustness: 20/400  robustness: 40/400  robustness: 60/400  robustness: 80/400  robustness: 100/400  robustness: 120/400  robustness: 140/400  robustness: 160/400  robustness: 180/400  robustness: 200/400  robustness: 220/400  robustness: 240/400  robustness: 260/400  robustness: 280/400  robustness: 300/400  robustness: 320/400  robustness: 340/400  robustness: 360/400  robustness: 380/400  robustness: 400/400
+Harness check 2: S0 vs stored global-sensitivity-samples.csv (first 20 draws) -> 0 mismatches
+
+Verdicts (criteria in RESCORE_CHECK.md), 3815s:
+
+C1 [S0] PopWt-best cap by demand: 1.5x 40%, 2x 20%, 3x 10%, 4x 10%, 5x 20%, 6x 25%, 7x 25%, 8x 30%, 10x 30%
+C2 [S0] package/fee-only ratio by demand: 1.5x 2.36, 2x 2.54, 3x 1.06, 4x 0.94, 5x 1.23, 6x 2.37, 7x 2.10, 8x 2.23, 10x 2.13; median 2.13
+C6 [S0] best bounded loses at: none
+C3 [S0] share of draws where best of 10/20/30% beats status quo: system 98.0%, fan_only 95.5%, pop_wt 99.5%
+C4 [S0] C4 fees 5%/side: 10% not clearly ahead at [4]; mean diffs 1.5x +0.057, 2x +0.067, 3x +0.011, 4x -0.001, 5x +0.048, 6x +0.058, 7x +0.055, 8x +0.053, 10x +0.048
+C4 [S0] C4 fees 10%/side: 10% not clearly ahead at no level; mean diffs 1.5x +0.064, 2x +0.070, 3x +0.022, 4x +0.006, 5x +0.047, 6x +0.056, 7x +0.051, 8x +0.046, 10x +0.035
+C5 [S0] C5 tough face value, fees 10%/side: 10% not clearly ahead at no level; mean diffs 1.5x +0.058, 2x +0.048, 3x +0.071, 4x +0.063, 5x +0.057, 6x +0.019, 7x +0.018, 8x +0.015, 10x +0.012
+C1 [S1] PopWt-best cap by demand: 1.5x 50%, 2x 50%, 3x 50%, 4x 50%, 5x 50%, 6x 20%, 7x 15%, 8x 15%, 10x 15%
+C2 [S1] package/fee-only ratio by demand: 1.5x 1.64, 2x 1.52, 3x inf, 4x 1.19, 5x 1.10, 6x 1.03, 7x 1.00, 8x 0.99, 10x 1.01; median 1.10
+C6 [S1] best bounded loses at: none
+C3 [S1] share of draws where best of 10/20/30% beats status quo: system 100.0%, fan_only 81.2%, pop_wt 100.0%
+C4 [S1] C4 fees 5%/side: 10% not clearly ahead at no level; mean diffs 1.5x +0.028, 2x +0.020, 3x +0.021, 4x +0.017, 5x +0.012, 6x +0.007, 7x +0.003, 8x +0.003, 10x +0.005
+C4 [S1] C4 fees 10%/side: 10% not clearly ahead at no level; mean diffs 1.5x +0.025, 2x +0.018, 3x +0.017, 4x +0.015, 5x +0.011, 6x +0.010, 7x +0.012, 8x +0.011, 10x +0.012
+C5 [S1] C5 tough face value, fees 10%/side: 10% not clearly ahead at no level; mean diffs 1.5x +0.014, 2x +0.017, 3x +0.031, 4x +0.034, 5x +0.035, 6x +0.034, 7x +0.033, 8x +0.027, 10x +0.018
+C1 [S2] PopWt-best cap by demand: 1.5x 50%, 2x 50%, 3x 50%, 4x 50%, 5x 50%, 6x 25%, 7x 15%, 8x 20%, 10x 20%
+C2 [S2] package/fee-only ratio by demand: 1.5x 1.39, 2x 1.42, 3x -inf, 4x 1.18, 5x 1.10, 6x 1.06, 7x 1.03, 8x 1.04, 10x 1.06; median 1.06
+C6 [S2] best bounded loses at: ['3x pop_wt vs Status Quo', '3x system vs Status Quo']
+C3 [S2] share of draws where best of 10/20/30% beats status quo: system 99.2%, fan_only 86.0%, pop_wt 100.0%
+C4 [S2] C4 fees 5%/side: 10% not clearly ahead at no level; mean diffs 1.5x +0.016, 2x +0.012, 3x +0.015, 4x +0.014, 5x +0.011, 6x +0.009, 7x +0.008, 8x +0.009, 10x +0.014
+C4 [S2] C4 fees 10%/side: 10% not clearly ahead at no level; mean diffs 1.5x +0.020, 2x +0.013, 3x +0.013, 4x +0.013, 5x +0.011, 6x +0.016, 7x +0.021, 8x +0.021, 10x +0.022
+C5 [S2] C5 tough face value, fees 10%/side: 10% not clearly ahead at no level; mean diffs 1.5x +0.011, 2x +0.012, 3x +0.027, 4x +0.029, 5x +0.032, 6x +0.035, 7x +0.034, 8x +0.029, 10x +0.020
+
+C1: FAILS   (S0 baseline: false)
+C2: FAILS   (S0 baseline: true)
+C3: SURVIVES   (S0 baseline: true)
+C4: SURVIVES   (S0 baseline: false)
+C5: SURVIVES   (S0 baseline: true)
+C6: SURVIVES UNDER ONE (S1)   (S0 baseline: true)

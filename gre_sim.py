@@ -237,6 +237,7 @@ class Agent:
     secondary_price:  float = 0.0
     dark_market:      bool  = False
     id:               str   = ""
+    primary_holder:   bool  = False  # held a ticket at the end of the primary sale (role-proof test)
 
 
 @dataclass
@@ -249,11 +250,49 @@ class Listing:
 
 
 # ── Scalper entry/exit helpers ───────────────────────────────────────────────
+# ── Model v2 (V2_PREREGISTRATION.md, 2026-11-15) ────────────────────────────
+# Selected with simulate(..., mechanics="v2"); the default "v1" is unchanged.
+#   M1  dark market clears: reservation = cost / (1 - enforcement loss); trade with
+#       the highest-WTP eligible buyer whose limit >= reservation, at the midpoint.
+#   M1b scalpers' entry and routing expect that v2 dark price.
+#   M2  routing compares net dark revenue with the NET platform price.
+#   M3  resale buyers are matched only if they can afford the all-in price.
+#   M4  fans may resell below face (no face-value floor on fan markdowns).
+MECHANICS = ("v1", "v2")
+
+
+def v2_dark_reservation(cost_basis: float, scalper_dark_cost: float) -> float:
+    """M1: dark price at which the scalper recovers cost after enforcement loss."""
+    return cost_basis / (1 - scalper_dark_cost)
+
+
+def v2_expected_dark_price(cost_basis: float, scalper_dark_cost: float, top_wtp: float) -> float:
+    """M1b: expected v2 dark price, midway between the reservation and the top
+    fan's limit (the reservation itself if no fan could pay it)."""
+    r = v2_dark_reservation(cost_basis, scalper_dark_cost)
+    return (r + max(r, top_wtp)) / 2
+
+
+def dark_routing(expected_dark_net: float, platform_ask: float, fee_seller: float,
+                 base: float, gamma: float, mechanics: str = "v1"):
+    """(considered, leakage_p) for one scalper ticket under a cap. `considered` is
+    True when dark beats the platform, which is when simulate() draws a random
+    number. v1 compares net dark revenue with the GROSS ask; v2 (M2) with the NET
+    platform price."""
+    platform_cmp = platform_ask * (1 - fee_seller) if mechanics == "v2" else platform_ask
+    if expected_dark_net > platform_cmp:
+        gap = (expected_dark_net - platform_cmp) / expected_dark_net
+        return True, base * (gap ** gamma)
+    return False, 0.0
+
+
 def expected_scalper_margin(rule: "Rule", mul: float,
                              dark_leakage_base:  float = DARK_LEAKAGE_BASE,
                              dark_leakage_gamma: float = DARK_LEAKAGE_GAMMA,
                              scalper_dark_cost:  float = SCALPER_DARK_COST,
-                             secondary_fee_seller: float = SECONDARY_FEE_SELLER) -> float:
+                             secondary_fee_seller: float = SECONDARY_FEE_SELLER,
+                             mechanics: str = "v1",
+                             top_wtp: Optional[float] = None) -> float:
     """
     Ex-ante expected margin per ticket for a scalper given ruleset and demand.
     Mirrors the pricing + leakage logic inside simulate() without sampling.
@@ -276,7 +315,10 @@ def expected_scalper_margin(rule: "Rule", mul: float,
         # to systematically underestimate dark revenue by ~30%, over-exiting and
         # under-routing — which overstated the cap advantage at tight caps.
         platform_net      = FACE * (1 + rule.cap) * (1 - secondary_fee_seller)
-        expected_dark     = FACE * (1 + 0.65 * mul)
+        if mechanics == "v2":                                    # M1b
+            expected_dark = v2_expected_dark_price(FACE, scalper_dark_cost, top_wtp)
+        else:
+            expected_dark = FACE * (1 + 0.65 * mul)
         expected_dark_net = expected_dark * (1 - scalper_dark_cost)
 
         if expected_dark_net > platform_net:
@@ -334,6 +376,15 @@ def simulate(rule: Rule, mul: float,
              # Scoring weights
              utility_w:             Optional[dict] = None,
              gr_w:                  Optional[dict] = None,
+             # Role-proof test (2026-11-03; see ROLE_PROOF_TEST.md)
+             continuation_rule:     Optional[Rule] = None,
+             return_agents:         bool = False,
+             # Listing check (2026-11-11; see LISTING_CHECK.md): "model" = the
+             # listing frictions below, unchanged; "always" = every fan whose
+             # plans change lists, with the same random draws consumed.
+             fan_listing:           str = "model",
+             # Model v2 mechanics (2026-11-15; see V2_PREREGISTRATION.md)
+             mechanics:             str = "v1",
              ) -> dict:
     """
     Canonical market simulation.
@@ -342,9 +393,20 @@ def simulate(rule: Rule, mul: float,
     sensitivity analysis can perturb one knob at a time while holding the rest
     at baseline. `scalper_decay` as a 2-tuple overrides the default 3-tier
     mul-dependent scalper markdown schedule uniformly across demand levels.
+
+    Role-proof test: `continuation_rule` runs the primary sale under `rule`
+    and everything after it (plan changes, resale, dark market, the resale
+    option in scoring) under `continuation_rule`, with tickets left where the
+    primary sale put them. None (the default) means the same rule throughout.
+    `return_agents` adds the agent list to the result for per-agent scoring.
     """
     if defs is None:
         defs = DEFS
+    if fan_listing not in ("model", "always"):
+        raise ValueError(f"fan_listing must be 'model' or 'always', not {fan_listing!r}")
+    if mechanics not in MECHANICS:
+        raise ValueError(f"mechanics must be one of {MECHANICS}, not {mechanics!r}")
+    top_wtp = max(defs[t]["max_pay_mul"] for t in FAN_TYPES if t in defs) * FACE
     uw = utility_w if utility_w is not None else DEFAULT_UTILITY_W
     gw = gr_w      if gr_w      is not None else DEFAULT_GR_W
 
@@ -355,6 +417,8 @@ def simulate(rule: Rule, mul: float,
         dark_leakage_gamma   = dark_leakage_gamma,
         scalper_dark_cost    = scalper_dark_cost,
         secondary_fee_seller = secondary_fee_seller,
+        mechanics            = mechanics,
+        top_wtp              = top_wtp,
     )
     scalper_pop_factor = scalper_pop_multiplier(
         scalper_margin,
@@ -434,6 +498,17 @@ def simulate(rule: Rule, mul: float,
     for a in agents:
         if a.phase == "waiting":
             a.phase = "missed"
+        a.primary_holder = (a.phase == "got_primary")
+
+    # Role-proof test: everything after the primary sale runs under `crule`.
+    # With no continuation rule this is `rule`, and the recomputed margins
+    # below equal the ones computed before the sale (no random draws involved).
+    crule = continuation_rule if continuation_rule is not None else rule
+    margin = crule.cap if crule.cap is not None else 1.0
+    if crule.cap is not None:
+        exp_margin = crule.cap * min(1.0, max(0.0, (mul - 1) / (sat_demand - 1)))
+    else:
+        exp_margin = max(0.0, (mul - 1) * 0.5)
 
     # ── Phase 2: Life Happens ────────────────────────────────────────────────
     dark_supply = 0  # scalper tickets routed off-platform
@@ -450,14 +525,14 @@ def simulate(rule: Rule, mul: float,
             # ask + dark routing logic.
             for _ in range(a.tickets):
                 # Demand-sensitive ask: mul=1 ~$150-180; mul=5 ~$350-500; mul=10 ~$650-950
-                platform_ask = round(sale_price * (1 + rule.cap)) if rule.cap is not None \
+                platform_ask = round(sale_price * (1 + crule.cap)) if crule.cap is not None \
                                else round(FACE * (1 + 0.5 * mul + random.random() * mul * 0.3))
                 # Dark market routing: scalpers compare NET dark revenue (after
                 # enforcement friction) against platform ask. Route only when net
                 # dark exceeds platform AND the gap is large enough to be worth
                 # the risk. Under enforcement, scalper_dark_cost=0.45 shrinks the
                 # effective dark payoff, tightening the binding region of the cap.
-                if rule.cap is not None:
+                if crule.cap is not None:
                     # A2 completion (2026-05-30 audit): align the in-loop routing
                     # decision with the realized dark-price mean and the ex-ante
                     # exit math. The realized dark price (line ~503 and the ask
@@ -466,11 +541,15 @@ def simulate(rule: Rule, mul: float,
                     # routing test was left at 0.5×mul — so scalpers under-routed to
                     # the dark channel relative to their own realized payoff and exit
                     # decision. Now consistent at 0.65×mul across all three sites.
-                    expected_dark     = FACE * (1 + 0.65 * mul)
+                    if mechanics == "v2":                        # M1b
+                        expected_dark = v2_expected_dark_price(a.cost_basis, scalper_dark_cost, top_wtp)
+                    else:
+                        expected_dark = FACE * (1 + 0.65 * mul)
                     expected_dark_net = expected_dark * (1 - scalper_dark_cost)
-                    if expected_dark_net > platform_ask:
-                        incentive_gap = (expected_dark_net - platform_ask) / expected_dark_net
-                        leakage_p = dark_leakage_base * (incentive_gap ** dark_leakage_gamma)
+                    considered, leakage_p = dark_routing(          # M2 inside
+                        expected_dark_net, platform_ask, secondary_fee_seller,
+                        dark_leakage_base, dark_leakage_gamma, mechanics)
+                    if considered:
                         if random.random() < leakage_p:
                             dark_supply += 1
                             continue  # skip platform listing for this ticket
@@ -492,17 +571,19 @@ def simulate(rule: Rule, mul: float,
                 # ~half of fans (p=0.5). Probability rises linearly to 1.0 at cap=10%,
                 # reflecting that even modest margin makes the effort worthwhile.
                 # Uncapped regimes (cap=None) always list (margin can be substantial).
-                if rule.cap is not None:
-                    p_list = min(1.0, 0.5 + rule.cap * 5.0)
+                if crule.cap is not None:
+                    p_list = min(1.0, 0.5 + crule.cap * 5.0)
                     lists  = random.random() < p_list
                 else:
                     lists  = True
             else:
                 lists = random.random() < 0.15
+            if fan_listing == "always":
+                lists = True
 
             if lists:
-                if rule.cap is not None:
-                    ask = round(sale_price * (1 + rule.cap * 0.9))
+                if crule.cap is not None:
+                    ask = round(sale_price * (1 + crule.cap * 0.9))
                 elif a.type == "average_buyer":
                     ask = round(FACE * (1.3 + random.random() * 0.5))
                 else:
@@ -532,12 +613,12 @@ def simulate(rule: Rule, mul: float,
             # sell_confidence: 0 at mul=1 (no scarcity), 1.0 at mul ≥ 1+sat_demand.
             (lambda sc=min(1.0, max(0.0, (mul - 1.0) / sat_demand)):
              exp_margin >= a.def_["flip_margin_threshold"] * (1.0 - 0.45 * sc)
-             if rule.cap is not None
+             if crule.cap is not None
              else exp_margin >= a.def_["flip_margin_threshold"])()
         ):
             a.attending = True
             a.phase     = "flipping"
-            ask = round(sale_price * (1 + rule.cap)) if rule.cap is not None \
+            ask = round(sale_price * (1 + crule.cap)) if crule.cap is not None \
                   else round(FACE * (1.5 + random.random() * 1.0))
             for _ in range(a.tickets - 1):
                 listings.append(Listing(seller=a, ask=ask, is_scalper=False))
@@ -547,8 +628,8 @@ def simulate(rule: Rule, mul: float,
             a.attending = True
             a.phase     = "attending"
             if a.tickets > 1 and a.type == "mega_fan" and random.random() < 0.15:
-                cap_val = rule.cap or 0
-                if rule.cap is not None:
+                cap_val = crule.cap or 0
+                if crule.cap is not None:
                     ask = round(sale_price * (1 + cap_val * 0.5))
                 else:
                     ask = round(FACE * (1.0 + random.random() * 0.1))
@@ -566,6 +647,7 @@ def simulate(rule: Rule, mul: float,
 
     seller_rev = {t: 0.0 for t in defs}
     bought_ids = set()
+    buyer_fee_mult = (1 + secondary_fee_buyer) if mechanics == "v2" else 1   # M3
 
     for rnd in range(3):
         for li in listings:
@@ -587,9 +669,10 @@ def simulate(rule: Rule, mul: float,
                 li.final_price = max(round(floors[rnd]), round(li.ask * decays[rnd]))
             else:
                 decays = [1.0, 0.95, 0.88]
-                li.final_price = max(FACE, round(li.ask * decays[rnd]))
-            if rule.cap is not None:
-                li.final_price = min(li.final_price, round(FACE * (1 + rule.cap)))
+                li.final_price = (round(li.ask * decays[rnd]) if mechanics == "v2"     # M4
+                                  else max(FACE, round(li.ask * decays[rnd])))
+            if crule.cap is not None:
+                li.final_price = min(li.final_price, round(FACE * (1 + crule.cap)))
 
         avail   = sorted([x for x in listings if not x.sold], key=lambda x: x.final_price)
         seekers = [b for b in missed if b.id not in bought_ids]
@@ -597,7 +680,7 @@ def simulate(rule: Rule, mul: float,
 
         for buyer in seekers:
             ticket = next((x for x in avail
-                           if not x.sold and x.final_price <= buyer.def_["max_pay_mul"] * FACE),
+                           if not x.sold and x.final_price * buyer_fee_mult <= buyer.def_["max_pay_mul"] * FACE),
                           None)
             if ticket:
                 ticket.sold           = True
@@ -623,8 +706,8 @@ def simulate(rule: Rule, mul: float,
     # via dark_unmatched and rolled into `wasted`.
     dark_sold      = 0
     dark_unmatched = 0
-    if dark_supply > 0 and rule.cap is not None:
-        cap_ceiling = FACE * (1 + rule.cap)
+    if dark_supply > 0 and crule.cap is not None:
+        cap_ceiling = FACE * (1 + crule.cap)
         # Candidates: missed buyers with WTP meaningfully above the cap ceiling
         # (those who would actually consider off-platform transactions).
         # Sort by descending WTP so high-WTP buyers absorb high-priced tickets first.
@@ -641,17 +724,29 @@ def simulate(rule: Rule, mul: float,
         # cheap tickets first, leaving expensive tickets unmatched and inflating
         # dark_unmatched. Efficient top-down matching is the standard mechanism
         # design approach and removes the algorithmic bias.
-        dark_prices = sorted(
-            [round(FACE * (1 + 0.5 * mul + random.random() * mul * 0.3))
-             for _ in range(dark_supply)],
-            reverse=True
-        )
+        if mechanics == "v2":
+            # M1: each ticket trades with the highest-WTP remaining candidate who can
+            # pay the reservation, at the midpoint of reservation and buyer limit.
+            reservation = v2_dark_reservation(sale_price, scalper_dark_cost)
+            dark_offers = [None] * dark_supply        # price set per match below
+        else:
+            dark_offers = sorted(
+                [round(FACE * (1 + 0.5 * mul + random.random() * mul * 0.3))
+                 for _ in range(dark_supply)],
+                reverse=True
+            )
         available = list(candidates)  # matched buyers removed as we go
 
-        for dark_price in dark_prices:
-            buyer = next((b for b in available
-                          if b.def_["max_pay_mul"] * FACE >= dark_price),
-                         None)
+        for dark_price in dark_offers:
+            if mechanics == "v2":
+                buyer = next((b for b in available
+                              if b.def_["max_pay_mul"] * FACE >= reservation), None)
+                if buyer is not None:
+                    dark_price = round((reservation + buyer.def_["max_pay_mul"] * FACE) / 2)
+            else:
+                buyer = next((b for b in available
+                              if b.def_["max_pay_mul"] * FACE >= dark_price),
+                             None)
             if buyer is None:
                 dark_unmatched += 1
                 continue
@@ -745,10 +840,10 @@ def simulate(rule: Rule, mul: float,
                 # fee-dominated and non-functional, exactly as in the UK/Ireland
                 # experience. Uncapped regimes keep full option value (0.70) since
                 # the gross markup swamps the fee.
-                if rule.cap is None:
+                if crule.cap is None:
                     resale_opt = 0.70
                 else:
-                    net_upside = rule.cap - secondary_fee_seller   # may be negative
+                    net_upside = crule.cap - secondary_fee_seller   # may be negative
                     # Map net upside in [0, 0.25] → option value in [0.20, 0.70];
                     # below break-even (net_upside ≤ 0) it declines linearly to a
                     # 0.05 floor.
@@ -779,7 +874,7 @@ def simulate(rule: Rule, mul: float,
                 # buyers in uncapped regimes. Status Quo and DP previously had zero
                 # modeled fraud, giving them a free pass vs the 3.8% UK empirical
                 # rate. Only applied to secondary (not primary or dark) buyers.
-                if rule.cap is None:
+                if crule.cap is None:
                     sec_frac = sum(1 for a in got if a.phase == "bought_secondary") / len(got)
                     utility  = max(0.0, utility - sec_frac * BASELINE_SECONDARY_FRAUD_PENALTY)
 
@@ -863,7 +958,7 @@ def simulate(rule: Rule, mul: float,
     harsanyi_pop_fan = round(
         sum(outcomes[t]["utility"] * pop[t] for t in FAN_TYPES) / total_pop_fan, 4)
 
-    return dict(
+    result = dict(
         system         = calc_gr([o["utility"]  for o in outcomes.values()]),
         fan_only       = calc_gr([outcomes[t]["utility"]  for t in FAN_TYPES]),
         pop_wt         = calc_gr([outcomes[t]["utility"]  for t in defs for _ in range(pop[t])]),
@@ -892,3 +987,16 @@ def simulate(rule: Rule, mul: float,
         dark_prevalence = round(dark_prevalence, 4),
         systemic_fraud  = round(systemic_fraud, 4),
     )
+    if return_agents:
+        # Role-proof test: the raw agents plus what per-agent scoring needs.
+        result.update(
+            agents               = agents,
+            listings             = listings,
+            continuation_rule    = crule,
+            sale_price           = sale_price,
+            secondary_fee_seller = secondary_fee_seller,
+            secondary_fee_buyer  = secondary_fee_buyer,
+            dark_fraud_penalty   = dark_fraud_penalty,
+            systemic_penalty     = systemic_penalty,
+        )
+    return result

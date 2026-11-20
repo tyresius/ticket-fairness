@@ -1,79 +1,95 @@
-# Golden Rule Equilibrium (GRE) — Ticket Market Simulation
+# Role-proof ticket resale
 
-Agent-based simulation of ticket-resale policy. Core question: what resale
-price cap (if any) maximizes fan welfare once scalpers, dark markets,
-platform fees, and enforcement are modeled honestly? The GRE framing scores
-rulesets by a "would you accept these rules not knowing your position?"
-composite (floor / equality / average weighted), alongside standard welfare
-criteria (Rawlsian maximin, Harsanyi utilitarian, Pareto screening).
+**An agent-based model of ticket-resale price ceilings, and a test of whether a rule stays acceptable after people's positions change.**
 
-**Headline finding to date:** a bounded resale cap beats Status Quo,
-Dynamic Pricing, and UK-style face-value-only resale on the
-population-weighted and system welfare lenses across demand levels. The
-optimal cap is demand-dependent within a **10–30% band** (a fixed 20% cap
-is never far from the per-demand optimum once markets are oversubscribed);
-under a UK-2026-style capped-fee regime the defensible band is **10–20%**.
-The band falls out of the secondary-platform fee structure (seller-side
-fee makes sub-~17.6% caps loss-making for legal resale) rather than being
-tuned to a target. The fan-price lens alone prefers the tightest cap —
-an accepted divergence (buyers prefer cheaper); the policy case rests on
-system function, not on out-cheapening face value.
-See `gre_sim.py`'s embedded changelog for the full audit history (A1–A6,
-B1, C1–C2, E1 fixes).
+Governments are capping ticket resale. The UK's announced plan is a face-value ceiling plus a cap on platform fees. Ontario capped resale at the original price in April 2026; Washington, D.C. allows up to 10% above it from January 2027. This project asks what level of ceiling actually serves fans, once you model:
 
-## Running
+- **who the fans are**, since they are not one group with one interest;
+- **how professional resellers adapt**, including moving trade off-platform;
+- **how preferences change** once some fans hold tickets and others don't.
+
+**Read the policy brief: [`POLICY_BRIEF.md`](POLICY_BRIEF.md).** It recommends keeping the fee cap but setting a fixed resale ceiling of 20–30% above the original price, not face value. That recommendation is a conditional, simulation-based policy argument, with the conditions stated.
+
+## What the model does
+
+- **Three groups of fans:** committed fans who will pay several times face value, regular attendees, and occasional buyers. They differ in willingness to pay, attendance, and how they behave when their plans change.
+- **Professional resellers modelled as adaptive predators ("wolves").** They enter and leave the market on expected margin, compete for primary inventory, mark down unsold stock, and route tickets to an off-platform market when it pays. That market clears at negotiated prices.
+- **Platform fees, fraud risk and enforcement costs.** The model assumes caps are enforced on-platform against a known original price, a "price of record" for each ticket. It states this as an assumption.
+- **Every fan scored individually,** before and after the primary sale, under three different judgements of how much a high price harms a fan.
+
+## Role-proofness
+
+A rule is **role-proof** against an alternative if:
+
+1. **no group of fans is detectably worse off on average,** judged both before allocation and after it, when fans know whether they hold a ticket;
+2. **professional resellers are fairly governed:** their business is neither destroyed nor driven off-platform (defined here as returns of 0–30% with at least 80% of stock sold lawfully).
+
+The closest established concept is role-reversal consistency (Costa-Gomes, Ju and Li, *Economic Inquiry*, 2019). This project applies the idea to the design of a market rule.
+
+## Main results
+
+These are from the final experiment (`V2_PREREGISTRATION.md`, results in `v2_verdicts.txt`): fixed ceilings of 0–40% with a 5%-per-side fee cap, 9 demand levels, and 300 paired runs per level.
+
+| Question | Result |
+| --- | --- |
+| Do positive ceilings beat face value for fans? | **Yes.** 10%, 20%, 30% and 40% each beat face value at every demand level, under both fan-listing assumptions and all three price scorings. |
+| How large is the gain? | About 4–11% (20%) and 7–24% (30%) on the fans' welfare index. At 5× demand, occasional fans' chance of a ticket rises from 4% to 7–8%. |
+| What happens to resellers? | Model-implied returns are about 16–17% at a 20% ceiling and 25% at 30%, against 85–100%+ in the uncapped model. At 40% they reach 34%, above the fair-governance limit. **That limit, not fan welfare, sets the top of the band.** |
+| Is the band role-proof against face value? | **No.** The most committed fans do slightly worse at moderate demand. Only a 10% ceiling showed no detected group-average loss, and only under baseline assumptions. |
+| Where does it fail? | Only if fans list unwanted tickets at face value as readily as at higher ceilings *and* place no value on being able to resell. The upper end of the band also moves with the fee level and with off-platform costs; see the brief's stress-test table. |
+
+## How the results were checked
+
+The project's main contribution may be its correction trail as much as its answer.
+
+1. **The claims were audited, and a role-proof test was added** (`CLAIMS_REGISTER.md`, `ROLE_PROOF_TEST.md`). The test failed the original 10–20% claim, and the diagnosis found a scoring error.
+2. **Every welfare claim was re-checked** against criteria written in advance (`RESCORE_CHECK.md`, `PRICE_SCORE_CHECK.md`, `LISTING_CHECK.md`).
+3. **First independent adversarial review** (`audit results/roleproof_audit_report_2026-11-12.md`). It found four mechanical errors, including off-platform tickets priced beyond every buyer's limit.
+4. **Model v2 fixed them** (the earlier version still reproduces exactly). **One final experiment** was run under a dated internal protocol that fixed its criteria and decision rules beforehand (`V2_PREREGISTRATION.md`).
+5. **Second independent review** (`audit results/roleproof_v2_audit_report_2026-11-17.md`). It regenerated runs and results exactly, stress-tested the assumptions, and called for wording fixes, which were made.
+
+Withdrawn claims and corrected facts are listed in [`CORRECTION_LOG.md`](CORRECTION_LOG.md).
+
+## Repository guide
+
+| Path | What it is |
+| --- | --- |
+| `POLICY_BRIEF.md` | The policy brief (final) |
+| `V2_PREREGISTRATION.md`, `v2_verdicts.txt` | Final experiment: protocol, criteria, decision rules, results |
+| `CORRECTION_LOG.md`, `CLAIMS_REGISTER.md` | What changed and why |
+| `audit results/` | Both independent review reports and the reviewer's reproduction files |
+| `gre_sim.py` | The simulation. `mechanics="v2"` is the final model; the default `"v1"` reproduces earlier results. |
+| `role_proof.py` | Individual fan scoring and the role-proof test |
+| `v2_experiment.py`, `v2_verdicts.py`, `v2-runs-*.csv.gz` | Final experiment code and one row per simulated run (62,100 runs) |
+| `test_*.py` | 20 tests, including one per v2 fix |
+| `*_CHECK.md`, `ROLE_PROOF_TEST.md`, the other scripts, CSVs and logs | The earlier checks, kept for the record |
+| `SOURCES.md` | Graded source ledger for every external fact |
+| `archive/` | Superseded material (old deck, v1 charts, prototypes). Not current. |
+
+## Reproduce
+
+Requires Python 3.12+. The simulation uses the standard library only; `numpy` is needed only for the older robustness scripts.
 
 ```bash
-# IMPORTANT: use /usr/local/bin/python3 (see requirements.txt note —
-# plain python3 resolves to a Homebrew build without numpy/matplotlib).
-
-/usr/local/bin/python3 cap_sweep.py            # main cap × demand sweep -> 2 CSVs
-/usr/local/bin/python3 rawls_analysis.py       # welfare criteria (reads cap-sweep CSVs)
-/usr/local/bin/python3 generate_charts.py      # charts 1-5 (reads cap-sweep CSVs)
-/usr/local/bin/python3 sensitivity_sweep.py    # OAT sensitivity -> rankings CSV
-/usr/local/bin/python3 global_sensitivity.py   # LHS + PRCC global sensitivity
-/usr/local/bin/python3 enforcement_sweep.py    # enforcement-regime comparison
-/usr/local/bin/python3 weight_discovery.py     # co-evolutionary agent tournament
-/usr/local/bin/python3 test_invariants.py      # invariant test suite (run before trusting any sweep)
-node generate_deck.js                          # pitch deck (pptxgenjs)
+python3 -m unittest test_invariants test_role_proof test_v2   # 20 tests
+python3 v2_verdicts.py                                         # all verdicts from the stored runs (seconds)
+for i in 0 1 2 3 4 5 6 7 8; do python3 v2_experiment.py --levels $i & done; wait   # re-run the final experiment (~5 min on 10 cores)
+python3 cap_sweep.py                                           # v1 sweep; reproduces cap-sweep-*.csv byte for byte
 ```
 
-Run order matters: `rawls_analysis.py` and `generate_charts.py` read the
-CSVs written by `cap_sweep.py`. All sweeps are seeded (`random.seed(42)`)
-and bit-for-bit reproducible; see the C1 notes in the source.
+## Limitations
 
-## File map
+- **It is a simulation, not a field study.** A single 500-seat event, calibrated to published evidence. It shows mechanisms and directions, not precise magnitudes.
+- **Several behaviours are stylised rather than calibrated:** fan listing behaviour, reseller markdowns, and off-platform costs and bargaining.
+- **The 5%-per-side fee cap is an assumption,** and the band's upper end depends on it.
+- **The fans' welfare index is constructed,** and the role-proof test uses group averages, not individual preferences.
 
-- `gre_sim.py` — canonical simulation core (single source of truth; all
-  model changes happen here; runners import `simulate()`/`Rule`)
-- `cap_sweep.py` — primary experiment: 13 rulesets × 10 demand levels × 100 runs
-- `sensitivity_sweep.py` / `global_sensitivity.py` — OAT and LHS+PRCC
-  robustness (PARAM_SPECS in the former is imported by the latter)
-- `enforcement_sweep.py`, `rawls_analysis.py`, `weight_discovery.py`,
-  `calibrate_systemic.py`, `calibrate_tw.py` — secondary analyses
-- `generate_charts.py`, `generate_deck.js`, `add_limitations_slide.py` —
-  presentation pipeline
-- `test_invariants.py` — conservation/bounds/determinism/regression tests
-- CSVs and `chart*.png` at root — current results of record (regenerate via
-  the commands above)
-- **Deprecated:** `cap-sweep.js`, `gre-scarcity-curves.jsx` — pre-2026-04-21
-  JS implementations, unsynced since the Python consolidation; kept for
-  provenance only
+The brief states all of these in full.
 
-## Open items / decision log
+## License
 
-1. **Systemic dark-market externality: DISABLED in baseline**
-   (`SYSTEMIC_FRAUD_WEIGHT = 0.0`). Calibration against the Ireland (13.6%) /
-   Victoria (13.7%) / UK (3.8%) fraud anchors failed on a units mismatch
-   (fraud-per-secondary-transaction vs dark-tickets-per-seat). The headline
-   results no longer depend on it; the fee mechanism carries the economic
-   argument instead. Re-enabling requires redefining `dark_prevalence` with
-   the transaction denominator and recalibrating — decision owner: Patrick.
-   Full status note at the `DARK_SYSTEMIC_K` block in `gre_sim.py`.
-2. Placeholder parameters flagged in-source (`DARK_LEAKAGE_*`,
-   `SCALPER_DARK_COST`) are directionally consistent with the
-   Ireland/Victoria/UK contrasts but need primary sources before
-   publication use.
-3. Chart/deck palette and series lists are defined in `sweep_config.py`
-   (shared by cap_sweep, rawls_analysis, generate_charts); `generate_deck.js`
-   still duplicates the palette in JS.
+The code is released under the MIT License (see [`LICENSE`](LICENSE)). The policy brief and the other written documents are released under [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+## Author
+
+Patrick Tyler, independent researcher. The code and analysis were developed with AI assistance (Anthropic's Claude), and both adversarial reviews were run independently using a separate AI model. All design choices, definitions and claims are the author's.

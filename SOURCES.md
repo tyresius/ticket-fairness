@@ -100,18 +100,26 @@ official channel to submit into; the window is imminent, not open.**
   https://www.irishstatutebook.ie/eli/2021/act/21/enacted/en/html
 - **Victoria, Australia:** Major Events Act 2009 — resale above **10%** over
   face value unlawful for declared events.
-- **Ontario, Canada (LIVE NATURAL EXPERIMENT — NEW):** Bill 94, *Putting Fans
-  First Act (No Ticket Resales Above Face Value), 2026*, passed via budget bill,
-  Royal Assent **April 2026**, in force. Caps resale at face value **including
-  fees**. Penalties to CA$50,000 individual / CA$250,000 corporate.
-  Ticketmaster **delisted** Ontario resale inventory in response.
-  **Observed displacement:** reporting documents sellers migrating to Facebook
-  Marketplace using **$1 "ask-first" listings** with prices negotiated by DM to
-  evade the cap (Global News, sellers switching after 31 July 2026 in-force
-  date). ⚠️ Currently **anecdotal only — no quantitative volume/fraud data
-  published.** This is the single best available real-world test of the
-  displacement mechanism and is *currently unmeasured*.
-  https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-94
+- **Ontario, Canada (VERIFIED 17 Nov 2026 from the statute text, e-Laws):**
+  *Plan to Protect Ontario Act (Budget Measures), 2026*, **Bill 97**, S.O. 2026,
+  c. 2. **Schedule 16** amends the Ticket Sales Act, 2017. Assented to and in
+  force **24 April 2026** (Sch. 16, s. 10: in force on Royal Assent).
+  - **New s. 2(3):** no resale above "the total price paid when the ticket was
+    purchased from the primary seller, plus any applicable fees, service
+    charges and taxes charged by the secondary seller or operator of a
+    secondary ticketing platform".
+  - **New s. 2(3.1):** a seller using a platform that charges a fee may not
+    add its own fee.
+  - **New s. 6:** the total price must be printed on the ticket. Resale offers
+    must disclose the primary total price and the itemized secondary fees.
+    Sellers must give platforms **proof of the primary total price**, and
+    platforms may not facilitate a sale without it: a statutory price-of-record
+    mechanism. Platforms must also keep records for 3 years (s. 8.1).
+  - Ticketmaster **delisted** Ontario resale inventory in response.
+  - **Observed displacement:** sellers reportedly moved to Facebook
+    Marketplace with **$1 "ask-first" listings**. ⚠️ **Anecdotal only:** no
+    quantitative volume or fraud data is published.
+  https://www.ontario.ca/laws/statute/s26002 ; https://www.ontario.ca/laws/statute/17t33 ; https://www.ontario.ca/page/buying-tickets-events-ontario
 
 ## Market structure — grade A
 
@@ -119,11 +127,73 @@ official channel to submit into; the window is imminent, not open.**
   resellers >70% of volume; ~80% of uncapped platform volume professional;
   £404M resale on 1.5M tickets. Anchors scalper concentration.
 
-## Behavior — grade B (scalper-lobby data; disclose)
+## US legal and legislative developments — grade A (VERIFIED 2026-09-29)
+
+- **United States v. Live Nation Entertainment (SDNY).** DOJ **settled
+  mid-trial on 9 March 2026** (trial began 2 March). Settlement is
+  **behavioural only — no divestiture**: multi-vendor ticketing at venues,
+  outside promoters admitted to up to 50% of amphitheatre inventory, and
+  certain fees capped at **15%**. There is **no financial component to the
+  DOJ settlement itself**; the **$280M** figure is a settlement *fund* for
+  plaintiff states' damages and civil-penalty claims, of which six "Settling
+  States" took ~$18.6M.
+  A coalition of states refused to settle and continued. On **15 April 2026**
+  a **jury** returned a verdict for the states on all federal and state
+  claims: unlawful monopolisation of primary ticketing and amphitheatres, and
+  unlawful tying of amphitheatres to promotion services. The jury found an
+  overcharge of **$1.72 per ticket** across 21 states and DC.
+  ⚠️ **Three corrections to how this is commonly stated, including in our own
+  earlier deck and in the Sept 2026 external audit:** (1) this is a **civil**
+  case — the correct term is *found liable* / *found to have monopolised*,
+  **not "guilty"**; (2) the April verdict was won by **the states**, not the
+  DOJ, which had already withdrawn; (3) sources differ on the state count
+  (33 states, or 36 states + DC) — prefer "a coalition of states" unless
+  citing one source precisely.
+  https://en.wikipedia.org/wiki/United_States_v._Live_Nation_Entertainment
+  https://ag.ny.gov/press-release/2026/attorney-general-james-and-coalition-states-win-trial-against-live-nation-and
+
+- **UK draft Ticket Tout Ban Bill: NOT YET PUBLISHED (verified 17 Nov 2026).**
+  - Written answer UIN 28945 (18 Sept 2026): the Government "will publish the
+    draft bill in this session of parliament for pre-legislative scrutiny".
+  - In the Commons debate on the Sporting Events Bill [Lords], 4 Nov 2026, MPs
+    were still urging the ticket touting Bill "to come forward".
+  - **The brief must refer to the Government's announced proposals** (Nov 2025
+    consultation response), not to a draft Bill text.
+  - https://questions-statements.parliament.uk/written-questions/detail/2026-09-10/28945
+
+- **Washington DC — RESALE Act, D.C. Law 26-181** ("Restricting Egregious
+  Scalping Against Live Entertainment (RESALE) Amendment Act of 2026"; CORRECTED
+  15 Nov 2026 against the official text). Bill 26-224, adopted on second reading
+  **14 July 2026**, Act 26-410 (10 Aug 2026), **effective 25 Sept 2026**,
+  **applies from 1 Jan 2027**.
+  - Resale capped at **the total price of the initial ticket, including all
+    fees and taxes, plus up to 10%** of that total.
+  - A secondary exchange's **marketplace service fee is capped at 10% of the
+    total initial price**: one fee, not 10% per side.
+  - From 1 Jan 2028 the Mayor may adjust the ceiling to 0–20% above the total
+    price and the fee to 5–20%.
+  - It also bans speculative sales, requires reseller licensing/registration,
+    and limits surveillance pricing.
+  - **For our model:** it is a bounded non-zero ceiling plus a fee cap, the same
+    two-lever design as the UK draft Bill. Our modelled fee structure is **not**
+    DC's: we use per-side fees on a face-value base.
+  https://code.dccouncil.gov/us/dc/council/laws/26-181 ; https://dccouncil.gov/council-gives-final-approval-to-resale-act-regulating-ticket-sales-and-capping-ticket-resale-prices/
+
+## Behavior — grade B (industry-derived; disclose)
 
 - **Protect Ticket Rights / Automatiq** (July 2025): 62% of events resale below
   face; ~33% price decay to event day. Anchors demand-distribution portfolio
   and the 3-round markdown decay.
+- **American Consumer Institute** (June 2025): 62% of events with below-face
+  resale; **$414M** in consumer savings in 2024; average secondary price falls
+  $29 between on-sale and the final month.
+  ⚠️ **Not independent corroboration.** The ACI analysis is built on
+  **186,113 transactions supplied by Automatiq** — the same resale-industry
+  data provider behind the PTR figure above. A Sept 2026 external audit
+  presented ACI as a separate source confirming the 62% number; it is the
+  same dataset with a second analyst. ACI is a market-oriented think tank and
+  the finding was republished by IPI. Cite as grade B with the data
+  provenance stated, never as independent confirmation.
 
 ## Enforcement — grade B/C (advocacy source; verify before load-bearing use)
 
