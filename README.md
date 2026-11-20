@@ -86,6 +86,10 @@ python3 cap_sweep.py                                           # v1 sweep; repro
 
 The brief states all of these in full.
 
+## License
+
+The code is released under the MIT License (see [`LICENSE`](LICENSE)). The policy brief and the other written documents are released under [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/).
+
 ## Author
 
 Patrick Tyler, independent researcher. The code and analysis were developed with AI assistance (Anthropic's Claude), and both adversarial reviews were run independently using a separate AI model. All design choices, definitions and claims are the author's.
