@@ -9,7 +9,7 @@
 | 9 Nov | Pre-registered re-check of the brief's welfare claims under corrected scoring. | **Withdrawn:** "the optimal ceiling is 10–30%" and "the ceiling's gain is 2.13× the fee cap's". | `RESCORE_CHECK.md` |
 | 9 Nov | Pre-registered price-score check (P0/P1/P2). | Every 10–20% claim failed. Today's market's strength at about 3× demand was diagnosed as a reseller-markdown artefact. | `PRICE_SCORE_CHECK.md` |
 | 9–11 Nov | Exploratory and pre-registered checks of the redrafted brief: resale valued by realized proceeds; frictionless fan listing. | **Withdrawn:** "the ceiling is the stronger lever on its own" | `BRIEF_REVISION_2026-11-09.md`, `LISTING_CHECK.md` |
-| 12 Nov | **External adversarial audit.** It found four mechanical errors: off-platform tickets priced above every buyer's limit, so they never sold at high demand; dark routing comparing net with gross; buyer fees ignored when matching buyers; a face-value floor on fans' resale. It also found legal and citation errors and method problems. | All accepted; triage in the claims register | `audit results/roleproof_audit_report_2026-11-12.md`, `CLAIMS_REGISTER.md` |
+| 12 Nov | **First independent adversarial review** (run with a separate AI model). It found four mechanical errors: off-platform tickets priced above every buyer's limit, so they never sold at high demand; dark routing comparing net with gross; buyer fees ignored when matching buyers; a face-value floor on fans' resale. It also found legal and citation errors and method problems. | All accepted; triage in the claims register | `audit results/roleproof_audit_report_2026-11-12.md`, `CLAIMS_REGISTER.md` |
 | 15 Nov | **Model v2** fixes the four errors (the old version still reproduces exactly). One pre-registered experiment was run. | Decision D1: a fixed 20–30% band. The brief was rewritten to the result. | `V2_PREREGISTRATION.md`, `v2_verdicts.txt` |
 
 ## Claims withdrawn from the brief
@@ -30,10 +30,10 @@
 - **DC Law 26-181.** The cap is set on the total initial price including fees and taxes, plus up to 10%. There is a single marketplace fee of up to 10% of that total. It took effect on 25 September 2026 and applies from 1 January 2027.
 - **Leslie & Sorensen (2014).** The one-third offset is rent-seeking **plus** resale transaction costs.
 
-## Final external audit, 17 Nov 2026
+## Final independent review, 17 Nov 2026 (run with a separate AI model)
 
 - **Source:** `audit results/roleproof_v2_audit_report_2026-11-17.md`, plus a reproduction zip.
-- **Verdict:** "publish with listed wording and evidence fixes, not as written". There were no new code errors comparable to the first audit's. Results reproduced exactly: 138 runs regenerated, 10,626 fields compared; verdicts byte-identical.
+- **Verdict:** "publish with listed wording and evidence fixes, not as written". There were no new code errors comparable to the first review's. Results reproduced exactly: 138 runs regenerated, 10,626 fields compared; verdicts byte-identical.
 - **Wording changes in the brief:**
   - "The draft Bill" → **the Government's announced proposals.** No draft text has been published; this was verified against Parliament's written answer of 18 Sept and the 4 Nov debate.
   - **Reseller returns** are now "model-implied returns before omitted costs" in "the model's uncapped market", not claims about today's real market.

@@ -137,8 +137,9 @@ experimental test of the Golden Rule (Costa-Gomes, Ju and Li, 2019). Our
 contribution is to apply acceptability from every position, before and after
 allocation, to the design of a market rule.
 
-**How the final results were produced.** An external audit of an earlier
-version found four mechanical errors in the simulation, which we fixed. We
+**How the final results were produced.** An independent adversarial review of an
+earlier version, run with a separate AI model, found four mechanical errors
+in the simulation, which we fixed. We
 then fixed the experiment, the criteria for each conclusion, and what this
 brief would recommend under each possible outcome, in a dated internal
 protocol, *before* running it once. The protocol was not registered with an
@@ -176,7 +177,7 @@ and holding costs the model omits. With the fee cap:
   **That limit, not fan welfare, is what sets the top of the band.** Fans'
   average outcome keeps rising to 40%.
 
-**That upper end is sensitive to assumptions.** An independent auditor re-ran
+**That upper end is sensitive to assumptions.** The second independent review re-ran
 the model under alternatives, with 45 paired runs per point. Under every one,
 the 20% and 30% ceilings still left fans better off than face value.
 Resellers' returns, at five times oversubscribed, moved as follows:
@@ -304,12 +305,13 @@ The final experiment, its pass criteria, and the brief's decision rules were
 fixed in a dated internal protocol before it was run
 (`V2_PREREGISTRATION.md`). The code and every run's results are published.
 The previous version of the model still reproduces exactly from the same
-code. A second external audit regenerated a sample of runs and the results
+code. A second independent review, also run with a separate AI model,
+regenerated a sample of runs and the results
 exactly from the published code and data, and ran the stress tests reported
 above.
 
 **Corrections.** This brief corrects earlier versions. An internal check
-found an error in how fan welfare was scored. An external audit found four
+found an error in how fan welfare was scored. The first independent review found four
 mechanical errors:
 
 - off-platform tickets priced beyond any buyer;
@@ -347,7 +349,7 @@ published with the code.
 5. **The fee cap's level is our assumption,** and the band's upper end
    depends on it.
 6. **Fans who resell a ticket are still credited with having obtained one,**
-   as is their buyer. In a check by the external auditor, scoring only final
+   as is their buyer. In a check by the second review, scoring only final
    holders narrowed the band's advantage but did not reverse it.
 
 ## Sources
@@ -405,3 +407,7 @@ published with the code.
 *The author is a US-based independent researcher with no financial interest
 in any primary or secondary ticketing business, and no relationship with
 any party cited above.*
+
+*The code and analysis were developed with AI assistance (Anthropic's
+Claude), and both adversarial reviews were run independently using a separate
+AI model. All design choices, definitions and claims are the author's.*
