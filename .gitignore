@@ -18,9 +18,9 @@ slide_lim-*
 qa_*.jpg
 uk2026_sweep.log
 
-# Patrick's personal working copies of the deck (Keynote master + PPTX export
-# used for review rounds; carry inline [Note: ...] annotations). The tracked
-# GRE-pitch-deck.pptx/.pdf are the artifacts of record.
+# The superseded September 2026 deck and its working copies stay out of the
+# repository.
+GRE-pitch-deck.*
 GRE-pitch-deck_PT.*
 GRE-pitch-deck edited*.pptx
 

@@ -64,7 +64,7 @@ Withdrawn claims and corrected facts are listed in [`CORRECTION_LOG.md`](CORRECT
 | `test_*.py` | 20 tests, including one per v2 fix |
 | `*_CHECK.md`, `ROLE_PROOF_TEST.md`, the other scripts, CSVs and logs | The earlier checks, kept for the record |
 | `SOURCES.md` | Graded source ledger for every external fact |
-| `archive/` | Superseded material (old deck, v1 charts, prototypes). Not current. |
+| `archive/` | Superseded material (v1 charts, old deck scripts, prototypes). Not current. |
 
 ## Reproduce
 
